@@ -1,0 +1,17 @@
+\section*{Exercício 2}
+\begin{proposition}{Métrica do supremo}{métrica_supremo}
+    Seja \(X = \mathcal{C}([0,1])\) o conjunto de todas as funções reais contínuas definidas no intervalo \([0,1]\). Então \((X, d_\infty)\) é um espaço métrico, com a métrica definida por
+    \begin{align*}
+        d_\infty : X \times X &\to \mathbb{R}\\
+                        (f,g) &\mapsto \sup_{x \in [0,1]} \abs{f(x) - g(x)}.
+    \end{align*}
+\end{proposition}
+\begin{proof}
+    Notemos que a imagem da função \(d_\infty\) está contida na semirreta \([0,\infty)\), visto que em sua definição é utilizada o valor absoluto
+    Para \(f,g \in X\), temos \(f = g\) se e somente se \(f(x) = g(x)\) para todo \(x \in [0,1]\). Portanto,
+    \begin{align*}
+        f = g &\iff \forall x \in [0,1] : \abs{f(x) - g(x)} = 0\\
+              &\iff \sup_{x \in [0,1]}  \abs{f(x) - g(x)} = 0\\
+              &\iff d_\infty(f,g) = 0.
+    \end{align*}
+\end{proof}
