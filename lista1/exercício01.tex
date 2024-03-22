@@ -1,0 +1,44 @@
+\section*{Exercício 1}
+\begin{proposition}{Métrica trivial}{métrica_trivial}
+    Seja \(X\) um conjunto não vazio, então \((X, d_\mathrm{t})\) é um espaço métrico, onde a função \(d_\mathrm{t} : X \times X \to \mathbb{R}\) é a métrica trivial, definida por
+    \begin{equation*}
+        d_\mathrm{t}(x,y) = \begin{cases}
+            0, & \text{se }x=y,\\
+            1, & \text{se }x\neq y,\\
+        \end{cases}
+    \end{equation*}
+    para todo \(x,y \in X\).
+\end{proposition}
+\begin{proof}
+    Pela definição da métrica trivial, temos
+    \begin{equation*}
+        d_\mathrm{t}(x,y) = 0 \iff x = y
+    \end{equation*}
+    para todo \(x,y \in X\). De mesma forma, pela simetria de relação de igualdade, temos
+    \begin{equation*}
+        d_\mathrm{t}(x,y) = d_\mathrm{t}(y,x).
+    \end{equation*}
+    Ainda, a imagem da função \(d_\mathrm{t}\) é contida na semirreta \([0,\infty)\),
+    \begin{equation*}
+        d_\mathrm{t}(X\times X) = \set*{0, 1} \subset [0, \infty).
+    \end{equation*}
+    Assim, resta mostrar que a métrica trivial satisfaz a desigualdade triangular.
+
+    Consideremos \(x,y,z \in \mathbb{R}\), então segue que
+    \begin{equation*}
+        0 \leq d_\mathrm{t}(x,z) + d_\mathrm{t}(z,y) \leq 2,
+    \end{equation*}
+    com os únicos valores possíveis para a soma sendo \(\set{0,1,2}\). No caso em que \(x = y\), temos \(d_\mathrm{t}(x,y) = 0\), portanto
+    \begin{equation*}
+        d_\mathrm{t}(x,y) \leq d_\mathrm{t}(x,z) + d_\mathrm{t}(z,y)
+    \end{equation*}
+    é satisfeita de forma trivial. No caso em que \(x \neq y\), temos \(d_\mathrm{t}(x,y) = 1\), portanto pela transitividade da igualdade temos que
+    \begin{equation*}
+        1 \leq d_\mathrm{t}(x,z) + d_\mathrm{t}(z,y) \leq 2,
+    \end{equation*}
+    já que \(z\) não pode ser igual a tanto \(x\) quanto \(y\), de modo que
+    \begin{equation*}
+        d_\mathrm{t}(x,y) \leq d_\mathrm{t}(x,z) + d_\mathrm{t}(z,y).
+    \end{equation*}
+    Dessa forma, mostramos que a desigualdade triangular é satisfeita em todos os casos, portanto \((X,d_\mathrm{t})\) é um espaço métrico.
+\end{proof}
