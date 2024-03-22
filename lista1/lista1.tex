@@ -1,0 +1,172 @@
+\documentclass[12pt,a4paper]{article}
+
+% Language and formatting
+\usepackage{polyglossia}
+\usepackage{csquotes} %fvextra to avoid warning?
+\setmainlanguage[variant=brazilian]{portuguese}
+
+% \usepackage[backend=biber, style=alphabetic, sorting=ynt]{biblatex}
+% \addbibresource{bibliography.bib}
+
+% \setmainfont{Palatino Linotype}
+% \setmathfont{Palatino Linotype}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{booktabs}
+
+% % title header
+% \usepackage{titleps}% http://ctan.org/pkg/titleps
+% \makeatletter
+% \newpagestyle{main}{% Define page style main
+%     \sethead%
+%     [\textbf\thepage][][\thechapter.\ \chaptertitle]% [<even-left>][<even-center>][<even-right>]
+%     {\thesection.\ \sectiontitle}{}{\textbf\thepage}% {<odd-left>}{<odd-center>}{<odd-right>}
+%     \setfoot{}{}{}% {<left>}{<center>}{<right>}
+% }
+% \pagestyle{main}% Use page style main
+
+% Images
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usepackage{graphicx, caption, subcaption}
+\usepackage{float}
+
+% Math tools
+\usepackage{amsfonts, mathtools, amssymb, amsmath, amsthm, enumitem}
+\usepackage{newpxtext, newpxmath}
+\numberwithin{equation}{section}
+\usepackage[ISO]{diffcoeff}
+\usepackage{tensor}
+\usepackage{siunitx}
+
+% Misc
+\usepackage{luacolor}
+\usepackage[breakable]{tcolorbox}
+
+\difdef{fp}{}{
+    outer-Ldelim = \left.,
+    outer-Rdelim = \right|,
+    sub-nudge=0 mu
+}
+\newcommand\todo[1][!]{{\color{Red} TODO {#1}}}
+\difdef{l}{i}{outer-Rdelim = \,, outer-Ldelim=}
+\NewDocumentCommand\dli{}{\dl.i.}
+\DeclareMathOperator\Riem{Riem}
+\DeclareMathOperator\Orb{Orb}
+\DeclareMathOperator\Stab{Stab}
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator\End{End}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\sech{sech}
+\DeclareMathOperator\hor{hor}
+\DeclareMathOperator\ver{ver}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1,\mathopen{}#2}
+\DeclarePairedDelimiter\set{\{}{\}}
+
+\newenvironment{smallpmatrix}{\left(\begin{smallmatrix}}{\end{smallmatrix}\right)}
+\newcommand\ract{\mathbin{\vartriangleleft}}
+\newcommand\ractalt{\mathbin{\blacktriangleleft}}
+\newcommand\lact{\mathbin{\vartriangleright}}
+\newcommand\lactalt{\mathbin{\blacktriangleright}}
+\newcommand\ad[1]{\operatorname{ad}_{#1}}
+\newcommand\Ad[1]{\operatorname{Ad}_{#1}}
+\newcommand\preim[2]{\operatorname{preim}_{#1}{\left(#2\right)}}
+\newcommand\id[1]{\operatorname{id}_{#1}}
+\newcommand\colorunderline[2]{{\color{#1}\underline{{\color{black}{#2}}}}}
+\newcommand\Hom[2][]{\ensuremath{\operatorname{Hom}_{#1}{\left(#2\right)}}}
+\newcommand\bundle[3]{\ensuremath{#1 \mathrel{\overset{#2}{\to}} #3}}
+\newcommand\smooth[1]{\ensuremath{\mathcal{C}^\infty(#1)}}
+\newcommand\sections[1]{\ensuremath{\Gamma\left(#1\right)}}
+\newcommand\forms[2][]{\ensuremath{\Lambda^{#1}{\left({#2}\right)}}}
+\newcommand\ffamily[3]{\ensuremath{\set*{#1}_{#2}^{#3}}}
+\newcommand\family[2]{\ensuremath{\set*{#1}_{#2}}}
+\newcommand\vetor[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand\linear{\ensuremath{\mathrel{\tilde{\to}}}}
+\newcommand\topology[1]{\ensuremath{\left(#1, \mathcal{O}_{#1}\right)}}
+\newcommand\manifold[1]{\ensuremath{\left(#1, \mathcal{O}_{#1}, \mathscr{A}_{#1}\right)}}
+\newcommand\restrict[2]{\ensuremath{\left.#1\right\rvert_{#2}}}
+\newcommand\bfield[1]{\ensuremath{\diffp*{}{#1}}}
+\newcommand\bvec[3][]{\ensuremath{\diffp*{#1}{#2}[#3]}}
+\newcommand\bset[3]{\ensuremath{\set*{\diffp*{}{{#1}^1}[#3], \dots, \diffp*{}{{#1}^{#2}}[#3]}}}
+\newcommand\pf[2][]{\ensuremath{{#2}_{\ast{#1}}}}
+\newcommand\pb[2][]{\ensuremath{{#2}^{\ast}_{#1}}}
+
+% catppuccin (latte)
+\definecolor{Rosewater}{RGB}{220,138,120}
+\definecolor{Flamingo}{RGB}{221,120,120}
+\definecolor{Pink}{RGB}{234,118,203}
+\definecolor{Mauve}{RGB}{136,57,239}
+\definecolor{Red}{RGB}{210,15,57}
+\definecolor{Maroon}{RGB}{230,69,83}
+\definecolor{Peach}{RGB}{254,100,11}
+\definecolor{Yellow}{RGB}{223,142,29}
+\definecolor{Green}{RGB}{64,160,43}
+\definecolor{Teal}{RGB}{23,146,153}
+\definecolor{Sky}{RGB}{4,165,229}
+\definecolor{Sapphire}{RGB}{32,159,181}
+\definecolor{Blue}{RGB}{30,102,245}
+\definecolor{Lavender}{RGB}{114,135,253}
+\definecolor{Text}{RGB}{76,79,105}
+\definecolor{Subtext1}{RGB}{92,95,119}
+\definecolor{Subtext0}{RGB}{108,111,133}
+\definecolor{Overlay2}{RGB}{124,127,147}
+\definecolor{Overlay1}{RGB}{140,143,161}
+\definecolor{Overlay0}{RGB}{156,160,176}
+\definecolor{Surface2}{RGB}{172,176,190}
+\definecolor{Surface1}{RGB}{188,192,204}
+\definecolor{Surface0}{RGB}{204,208,218}
+\definecolor{Base}{RGB}{239,241,245}
+\definecolor{Mantle}{RGB}{230,233,239}
+\definecolor{Crust}{RGB}{220,224,232}
+
+% References
+\usepackage{hyperref}
+\usepackage[brazilian,capitalize,nameinlink,noabbrev]{cleveref}
+\makeatletter
+\hypersetup{
+    pdftitle=\@title,
+    pdfauthor=\@author,
+    colorlinks=true,
+    linkcolor=Mauve,
+    citecolor=pink,
+    filecolor=red,
+    urlcolor=blue,
+    bookmarksdepth=4
+}
+\makeatother
+
+% tcolorbox environments
+\tcbuselibrary{theorems}
+% theorem
+\newtcbtheorem[auto counter, crefname={Teorema}{Teoremas}]{theorem}{Teorema}%
+{breakable,colback=Mauve!5,colframe=Mauve!95!black,fonttitle=\bfseries}{thm}
+
+% definition
+\newtcbtheorem[auto counter, crefname={Definição}{Definições}]{definition}{Definição}%
+{breakable, colback=Pink!5,colframe=Pink!95!black,fonttitle=\bfseries}{def}
+
+% proposition
+\newtcbtheorem[auto counter, crefname={Proposição}{Proposições}]{proposition}{Proposição}%
+{breakable,colback=Lavender!5,colframe=Lavender!95!black,fonttitle=\bfseries}{prop}
+
+% lemma
+\newtcbtheorem[auto counter, crefname={Lema}{Lemas}]{lemma}{Lema}%
+{breakable,colback=Flamingo!5,colframe=Flamingo!95!black,fonttitle=\bfseries}{lem}
+
+\title{Física Matemática II\\Primeira Lista de Exercícios}
+\author{Louis Bergamo Radial\\8992822}
+
+\begin{document}
+\maketitle
+\input{exercício01}
+\input{exercício02}
+\input{exercício03}
+\input{exercício04}
+\input{exercício05}
+\input{exercício06}
+\input{exercício07}
+\input{exercício08}
+\input{exercício09}
+\input{exercício10}
+\end{document}
