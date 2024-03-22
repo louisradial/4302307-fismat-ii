@@ -7,11 +7,24 @@
     \end{align*}
 \end{proposition}
 \begin{proof}
-    Notemos que a imagem da função \(d_\infty\) está contida na semirreta \([0,\infty)\), visto que em sua definição é utilizada o valor absoluto
+    Notemos que a imagem da função \(d_\infty\) está contida na semirreta \([0,\infty)\).
+
     Para \(f,g \in X\), temos \(f = g\) se e somente se \(f(x) = g(x)\) para todo \(x \in [0,1]\). Portanto,
     \begin{align*}
         f = g &\iff \forall x \in [0,1] : \abs{f(x) - g(x)} = 0\\
               &\iff \sup_{x \in [0,1]}  \abs{f(x) - g(x)} = 0\\
               &\iff d_\infty(f,g) = 0.
     \end{align*}
+    Notemos também que a função \(d_\infty\) é simétrica em seus argumentos, isto é,
+    \begin{equation*}
+        d_\infty(g,f) = \sup_{x\in[0,1]}\abs{g(x) - f(x)} = \sup_{x\in[0,1]} \abs{f(x) - g(x)} = d_\infty(f,g).
+    \end{equation*}
+
+    Consideremos \(f,g,h \in X\), então
+    \begin{align*}
+        d_\infty(f,g) &= \sup_{x\in[0,1]}\abs*{f(x) - h(x) + h(x) - h(x)}\\\
+                      &\leq \sup_{x\in[0,1]} \abs{f(x) - h(x)} + \abs{h(x) - g(x)}\\
+                      &\leq d_\infty(f,h) + d_\infty(h,g).
+    \end{align*}
+    Dessa forma, mostramos que a função \(d_\infty\) é uma métrica.
 \end{proof}
