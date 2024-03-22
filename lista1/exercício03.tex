@@ -1,1 +1,30 @@
 \section*{Exercício 3}
+\begin{proposition}{Métrica \(d_1\)}{métrica_d1}
+    Seja \(X = \mathcal{C}([0,1])\) o conjunto de todas as funções reais contínuas definidas no intervalo \([0,1]\). Então \((X, d_1)\) é um espaço métrico, com a métrica definida por
+    \begin{align*}
+        d_1 : X \times X &\to \mathbb{R}\\
+        (f,g) &\mapsto \int_0^1 \dli{x} \abs{f(x) - g(x)}.
+    \end{align*}
+\end{proposition}
+\begin{proof}
+    Notemos que a imagem da função \(d_1\) está contida na semirreta \([0,\infty)\).
+
+    Suponhamos que duas funções \(f,g \in X\) satisfazem \(d_1(f,g)=0\). Certamente essas funções devem ser diferentes em no máximo um conjunto de medida nula. Como as funções são contínuas, este conjunto deve ser vazio. Desse modo, \(f = g\) em \([0,1]\).
+    Suponhamos agora que duas funções são iguais \(f = g\). Claramente temos \(d_1(f,g) = 0\). Desse modo,
+    \begin{equation*}
+        f = g \iff d_1(f,g) = 0.
+    \end{equation*}
+
+    Vejamos também que a função \(d_1\) é simétrica em seus argumentos, isto é,
+    \begin{equation*}
+        d_1(g,f) = \int_0^1 \dli{x} \abs{g(x) - f(x)} = \int_0^1 \dli{x} \abs{f(x) - g(x)} = d_1(f,g).
+    \end{equation*}
+
+    Consideremos \(f,g,h \in X\), então
+    \begin{align*}
+        d_1(f,g) &= \int_0^1 \dli{x} \abs{f(x) - h(x) + h(x) - g(x)}\\
+                 &\leq \int_0^1 \dli{x} \abs{f(x) - h(x)} + \abs{h(x) - g(x)}\\
+                 &\leq d_1(f,h) + d_1(h,g).
+    \end{align*}
+    Dessa forma, mostramos que a função \(d_1\) é uma métrica em \(X\).
+\end{proof}
