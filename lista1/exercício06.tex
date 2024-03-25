@@ -1,1 +1,27 @@
 \section*{Exercício 6}
+\begin{proposition}{\(\mathbb{Q}\) não é completo em relação à métrica usual}{cauchy_não_converge}
+    A sequência \(\family{x_n}{n\in \mathbb{N}}\subset \mathbb{Q}\) definida por
+    \begin{equation*}
+        x_n = \sum_{k = 0}^n \frac{1}{k!}
+    \end{equation*}
+    é de Cauchy mas não converge a nenhum número racional em relação à métrica usual.
+\end{proposition}
+\begin{proof}
+    Consideremos \(n,m \in \mathbb{N}\) com \(n > m\), então
+    \begin{align*}
+        \abs{x_n - x_m} &= \abs*{\sum_{k=0}^{n}\frac{1}{k!} - \sum_{j = 0}^m\frac{1}{j!}}\\
+                        % &= \sum_{k=m+1}^{n} \frac{1}{k!}\\
+                        &= \sum_{k=0}^{n-m-1} \frac{1}{(k+m+1)!}\\
+                        &= \frac{1}{(m+1)!} \sum_{k=0}^{n-m-1} \frac{(m+1)!}{(k+m+1)!}\\
+                        &= \frac{1}{(m+1)!} \left(1 + \frac{1}{m+2} + \frac{1}{(m+2)(m+3)} + \dots + \frac{(m+1)!}{n!}\right)\\
+                        &\leq \frac{1}{(m+1)!}\left(1 + \frac{1}{m+2} + \frac{1}{(m+2)^2} + \dots + \frac{1}{(m+2)^{n-m-1}}\right)\\
+                        &<\frac{1}{(m+1)!} \sum_{k = 0}^\infty (m+2)^{-k}.
+    \end{align*}
+    Pela \cref{prop:exercício_5}, temos
+    \begin{equation*}
+        \abs{x_n - x_m} < \frac{1}{(m+1)!}\frac{m + 2}{m + 1}.
+    \end{equation*}
+    Assim, podemos tornar \(\abs{x_n - x_m}\) arbitrariamente pequeno ao escolher \(m\) suficientemente grande, isto é, a sequência é de Cauchy em relação à métrica usual.
+
+    Sabemos que esta sequência converge a \(e \in \mathbb{R} \smallsetminus \mathbb{Q}\), pela definição de exponencial. Desse modo, a sequência não é convergente nos racionais com a métrica usual.
+\end{proof}
