@@ -1,1 +1,56 @@
 \section*{Exercício 4}
+\begin{definition}{Métrica induzida por uma norma}{métrica_norma}
+    Seja \(\mathcal{E}\) um espaço vetorial dotado de uma norma \(\norm{\cdot} : \mathcal{E} \to [0, \infty)\). A aplicação
+    \begin{align*}
+        d : \mathcal{E} \times \mathcal{E} &\to [0, \infty)\\
+                                     (x,y) &\mapsto \norm{x - y}
+    \end{align*}
+    é denominada métrica induzida pela norma \(\norm{\cdot}\).
+\end{definition}
+
+\begin{proposition}{Métrica induzida por uma norma}{métrica_norma}
+    Seja \(\mathcal{E}\) um espaço vetorial sobre o corpo \(\mathbb{K}\). Uma métrica \(d : \mathcal{E} \times \mathcal{E} \to [0, \infty)\) é induzida por uma norma em \(\mathcal{E}\) se e somente se \(d\) satisfaz
+    \begin{enumerate}[label=(\alph*)]
+        \item invariância translacional: \(d(u + t, v + t) = d(u, v)\) para todo \(u,v,t \in \mathcal{E}\); e
+        \item transformação de escala \(d(\alpha u , \alpha v) = \abs{\alpha}d(u, v)\) para todo \(u,v \in \mathcal{E}\) e \(\alpha \in \mathbb{K}\).
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Suponha que \(d\) é uma métrica induzida pela norma \(\norm{\cdot}\). Para todos \(u,v,t\in\mathcal{E}\) e \(\alpha \in \mathbb{K}\), temos
+    \begin{equation*}
+        d(u + t, v + t) = \norm{(u+t) - (v + t)} = \norm{u - v} = d(u,v)
+    \end{equation*}
+    e
+    \begin{equation*}
+        d(\alpha u, \alpha v) = \norm{\alpha (u - v)} = \abs{\alpha} \norm{u-v} = \abs{\alpha} d(u,v).
+    \end{equation*}
+    Isto é, se \(d\) é induzida por uma norma, então \(d\) satisfaz (a) e (b).
+
+    Suponha agora que \(d\) satisfaz (a) e (b). Mostremos que a aplicação
+    \begin{align*}
+        \norm{\cdot} : \mathcal{E} &\to [0, \infty)\\
+                                 v &\mapsto d(v, 0)
+    \end{align*}
+    é uma norma em \(\mathcal{E}\). Notemos que
+    \begin{align*}
+        v = 0 &\iff d(v, 0) = 0\\
+              &\iff \norm{v} = 0,
+    \end{align*}
+    e
+    \begin{equation*}
+        \norm{\lambda u} = d(\lambda u, 0) = \abs{\lambda} d(u,0) = \abs{\lambda}\norm{u}
+    \end{equation*}
+    para todo \(\lambda \in \mathbb{K}\) e \(u \in \mathcal{E}\). Pela propriedade (b) segue que
+    \begin{equation*}
+        \norm{x + y} = d(x + y, 0) = d(x, -y),
+    \end{equation*}
+    portanto pela propriedade (a) e pela desigualdade triangular para \(d\), temos
+    \begin{equation*}
+        \norm{x+y} \leq d(x, 0) + d(0, y)
+    \end{equation*}
+    ou então \(\norm{x+y} \leq \norm{x} + \norm{y}\) para todo \(x,y\in\mathcal{E}\). Desse modo, \(\norm{\cdot}\) é uma norma em \(\mathcal{E}\). Ainda, temos
+    \begin{equation*}
+        d(u, v) = d(u-v, 0) = \norm{u - v},
+    \end{equation*}
+    portanto \(d\) é a métrica induzida pela norma \(\norm{\cdot}\). Isto é, se \(d\) satisfaz (a) e (b), então \(d\) é uma métrica induzida por uma norma.
+\end{proof}
