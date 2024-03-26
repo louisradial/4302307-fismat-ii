@@ -1,5 +1,5 @@
 \section*{Exercício 8}
-\begin{proposition}{Oi}{exercício_8}
+\begin{proposition}{Uma métrica define outra}{exercício_8}
     Seja \((M, d)\) um espaço métrico, então
     \begin{align*}
         d_0 : M \times M &\to [0, \infty)\\
@@ -19,14 +19,18 @@
     \end{equation*}
     portanto resta mostrar que \(d_0\) satisfaz a desigualdade triangular.
 
-    \todo[Mostremos que a aplicação
+    Consideremos a aplicação
     \begin{align*}
         f : [0, \infty) &\to [0, \infty)\\
-                    \xi &\mapsto \frac{\xi}{1+\xi}
+                    \xi &\mapsto \frac{\xi}{1+\xi}.
     \end{align*}
-    é crescente.]
+    Temos
+    \begin{equation*}
+        f'(\xi) = \frac{1}{(1+\xi)^2}
+    \end{equation*}
+    para todo \(\xi \in [0,\infty)\). Isto é, \(f'(\xi) > 0\) em todo o seu domínio, portanto é uma função crescente.
 
-    Desse modo, como \(f\) é crescente, a relação de ordem é mantida, isto é
+    Desse modo, como \(f\) mantém a relação de ordem, isto é,
     \begin{align*}
         d(x,y) \leq d(x,z) + d(z, y) &\implies d_0(x,y) \leq f(d(x,z) + d(z,y))\\
                                      &\implies d_0(x,y) \leq \frac{d(x,z) + d(z,y)}{1 + d(x,z) + d(z,y)},
@@ -39,9 +43,9 @@
     \end{align*}
     e analogamente
     \begin{equation*}
-        0 \leq d(y,z) \leq d(x,z) + d(z,y) \implies \frac{d(z,y)}{1+d(x,z)+d(y,z)} \leq d_0(z,y) \leq d(z,y),
+        0 \leq d(y,z) \leq d(x,z) + d(z,y) \implies \frac{d(z,y)}{1+d(x,z)+d(y,z)} \leq d_0(z,y) \leq d(z,y).
     \end{equation*}
-    para todo \(x,y,z \in M\). Portanto
+    Portanto
     \begin{equation*}
         \frac{d(x,z) + d(z,y)}{1 + d(x,z) + d(z,y)} \leq d_0(x,z) + d_0(z,y),
     \end{equation*}
@@ -49,5 +53,5 @@
     \begin{equation*}
         d_0(x,y) \leq d_0(x,z) + d_0(z,y),
     \end{equation*}
-    isto é, \(d_0\) satisfaz a desigualdade triangular.
+    isto é, \(d_0\) satisfaz a desigualdade triangular. Logo, \(d_0\) é uma métrica em \(M\).
 \end{proof}
