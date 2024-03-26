@@ -1,1 +1,53 @@
 \section*{Exercício 8}
+\begin{proposition}{Oi}{exercício_8}
+    Seja \((M, d)\) um espaço métrico, então
+    \begin{align*}
+        d_0 : M \times M &\to [0, \infty)\\
+                   (x,y) &\mapsto \frac{d(x,y)}{1+d(x,y)}
+    \end{align*}
+    é uma métrica em \(M\).
+\end{proposition}
+\begin{proof}
+    Por \(d\) ser uma métrica, temos
+    \begin{align*}
+        d_0(x,y) = 0 &\iff d(x,y) = 0\\
+                     &\iff x = y,
+    \end{align*}
+    e
+    \begin{equation*}
+        d_0(y,x) = \frac{d(y,x)}{1 + d(y,x)} = \frac{d(x,y)}{1+d(x,y)} = d_0(x,y),
+    \end{equation*}
+    portanto resta mostrar que \(d_0\) satisfaz a desigualdade triangular.
+
+    \todo[Mostremos que a aplicação
+    \begin{align*}
+        f : [0, \infty) &\to [0, \infty)\\
+                    \xi &\mapsto \frac{\xi}{1+\xi}
+    \end{align*}
+    é crescente.]
+
+    Desse modo, como \(f\) é crescente, a relação de ordem é mantida, isto é
+    \begin{align*}
+        d(x,y) \leq d(x,z) + d(z, y) &\implies d_0(x,y) \leq f(d(x,z) + d(z,y))\\
+                                     &\implies d_0(x,y) \leq \frac{d(x,z) + d(z,y)}{1 + d(x,z) + d(z,y)},
+    \end{align*}
+    para todo \(x,y,z \in M\). Notemos que
+    \begin{align*}
+        0 \leq d(x,z) \leq d(x,z) + d(z,y) &\implies 1 \leq 1 + d(x,z) \leq 1 + d(x,z) + d(z,y)\\
+                                           &\implies \frac{1}{1+d(x,z) + d(z,y)} \leq \frac{1}{1+d(x,z)} \leq 1\\
+                                           &\implies \frac{d(x,z)}{1+d(x,z)+d(y,z)} \leq d_0(x,z) \leq d(x,z),
+    \end{align*}
+    e analogamente
+    \begin{equation*}
+        0 \leq d(y,z) \leq d(x,z) + d(z,y) \implies \frac{d(z,y)}{1+d(x,z)+d(y,z)} \leq d_0(z,y) \leq d(z,y),
+    \end{equation*}
+    para todo \(x,y,z \in M\). Portanto
+    \begin{equation*}
+        \frac{d(x,z) + d(z,y)}{1 + d(x,z) + d(z,y)} \leq d_0(x,z) + d_0(z,y),
+    \end{equation*}
+    donde segue
+    \begin{equation*}
+        d_0(x,y) \leq d_0(x,z) + d_0(z,y),
+    \end{equation*}
+    isto é, \(d_0\) satisfaz a desigualdade triangular.
+\end{proof}
