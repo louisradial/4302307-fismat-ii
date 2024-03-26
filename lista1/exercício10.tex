@@ -1,4 +1,21 @@
 \section*{Exercício 10}
+\begin{lemma}{Ponto fixo único de uma função iterada}{ponto_fixo_iteração}
+    Seja \(X\) um conjunto não vazio onde está definida a função \(f : X \to X\). Se a iteração \(g = f\circ f\) tem um único ponto fixo, então \(f\) tem um único ponto fixo.
+\end{lemma}
+\begin{proof}
+    Seja \(y \in X\) o único ponto fixo de \(g\). Pela associatividade da composição de funções, temos
+    \begin{equation*}
+        f(y) = (f\circ g)(y) = (f\circ f)(f(y)) = g(f(y)),
+    \end{equation*}
+    isto é, \(f(y)\) é um ponto fixo de \(g\), portanto \(y = f(y)\). Assim, \(y\) é ponto fixo de \(f\).
+
+    Suponhamos, por contradição, que \(x \in X\smallsetminus \set{y}\) é um ponto fixo de \(f\). Temos
+    \begin{equation*}
+        g(x) = f(f(x)) = f(x) = x,
+    \end{equation*}
+    portanto \(x\) é um outro ponto fixo de \(g\). Esta contradição mostra que \(y\) é o único ponto fixo de \(f\) em \(X\).
+\end{proof}
+
 \begin{proposition}{Constante Omega}{lambert}
     A única solução de
     \begin{equation*}
@@ -7,5 +24,56 @@
     para \(x \in [0,\infty)\) é a constante \(\Omega = W(1) \simeq 0.56714.\)
 \end{proposition}
 \begin{proof}
-    Consideremos a aplicação
+    Pela definição da função \(W\) de Lambert, temos
+    \begin{equation*}
+        \Omega e^\Omega = 1 \implies \Omega = e^{-\Omega},
+    \end{equation*}
+    portanto resta mostrar que esta equação não possui outra solução em \([0,\infty)\). Alternativamente, mostramos que \(\Omega\) é um ponto fixo da aplicação suave
+    \begin{align*}
+        f : [0, \infty) &\to [0, \infty)\\
+                      t &\mapsto e^{-t}
+    \end{align*}
+    e desejamos mostrar que \(\Omega\) é o único ponto fixo de \(f\) em \([0,\infty)\).
+
+    Consideremos a aplicação suave
+    \begin{align*}
+        g : [0, \infty) &\to [0,\infty)\\
+                      t &\mapsto (f\circ f)(t) = \exp{\left(-e^{-t}\right)}.
+    \end{align*}
+    Temos \(\ln{g(t)} = -f(t)\) para todo \(t \in [0,\infty)\), portanto
+    \begin{equation*}
+        g'(t) = f(t) g(t),
+    \end{equation*}
+    é a derivada de \(g\), já que \(f'(t) = -f(t)\). Assim, a segunda derivada é dada por
+    \begin{align*}
+        g''(t) &= f'(t)g(t) + f(t)g'(t)\\
+               &= -f(t) g(t) + f(t) f(t) g(t)\\
+               &= \left(f(t) - 1\right) f(t) g(t).
+    \end{align*}
+    Notemos que
+    \begin{align*}
+        t \in [0, \infty) &\implies 0 < f(t) \leq 1\\
+                          &\implies -1 < f(t) - 1 \leq 0\\
+    \end{align*}
+    onde a igualdade ocorre apenas para \(t = 0\), portanto \(g''(t) \leq 0\) para todo \(t \geq 0\), isto é, \(g'(t)\) decresce monotonicamente em \([0, \infty)\). Desse modo, temos
+    \begin{equation*}
+        t \in [0, \infty) \implies 0 < g'(t) \leq \frac1e.
+    \end{equation*}
+
+    Consideremos \(\abs{g(x) - g(y)}\) para \(x,y \in [0,\infty)\). Pelo teorema do valor médio, existe \(\xi \in [0, \infty)\) entre \(x\) e \(y\) tal que
+    \begin{equation*}
+        g(x) - g(y) = g'(\xi) (x-y)
+    \end{equation*}
+    então
+    \begin{equation*}
+        \abs{g(x) - g(y)} = g'(\xi)\abs{x - y} \leq \frac1e \abs{x - y}.
+    \end{equation*}
+
+    Assim, mostramos que \(g\) é uma contração em \([0, \infty)\) em relação à métrica usual. \todo[Como \([0, \infty)\) dotado da métrica usual é um espaço métrico completo,] temos que \(g\) tem um único ponto fixo neste espaço, pelo teorema do ponto fixo de Banach. Pelo \cref{lem:ponto_fixo_iteração}, segue que \(f\) tem um único ponto fixo, que é \(\Omega\).
 \end{proof}
+
+Utilizando o código a seguir, obtemos após quarenta iterações um erro absoluto compatível com a precisão máxima oferecida pela biblioteca \verb|numpy|. O valor obtido pelo programa foi \(\Omega \simeq0.567143290409783873\). Após quarenta iterações e utilizando o ponto inicial \(x_0 = 0,\) o erro estimado é \(\Omega - x_{40} \leq \frac{e^{-41}}{1 - e^{-1}}.\)
+\begin{listing}[h]
+    \inputminted[linenos]{Python}{exercício10.py}
+\end{listing}
+% https://math.stackexchange.com/questions/494558/proving-that-union-of-a-finite-number-of-complete-subsets-of-metric-space-x-d?rq=1
