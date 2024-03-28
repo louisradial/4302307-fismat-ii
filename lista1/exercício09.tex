@@ -1,1 +1,41 @@
 \section*{Exercício 9}
+
+\begin{proposition}{O intervalo aberto \((a,b)\) não é um espaço métrico completo em relação à métrica usual}{aberto}
+    Consideremos o intervalo aberto não vazio \(\mathring{A} = (a,b) \subset \mathbb{R}\) e a métrica usual
+    \begin{align*}
+        d : \mathbb{R} \times \mathbb{R} &\to [0, \infty)\\
+                                   (x,y) &\mapsto \abs{x - y}.
+    \end{align*}
+    O espaço métrico \((\mathring{A}, d)\) não é completo.
+\end{proposition}
+\begin{proof}
+    Consideremos a sequência \(s : \mathbb{N} \to \mathring{A}\) definida por \(s_0 = s_1 = \frac{a+b}{2}\) e
+    \begin{equation*}
+        s_n = a + \frac{b - a}{n}
+    \end{equation*}
+    para \(n \geq 2\).
+
+    Dado \(\varepsilon > 0\), podemos tomar \(M = \frac{\varepsilon}{2(b - a)}\) tal que para todos \(n,m > M\) vale
+    \begin{align*}
+        d(s_m, s_n) &= (b - a) \abs*{\frac{1}{m} - \frac{1}{n}}\\
+                    &\leq \frac{b - a}{m} + \frac{b - a}{n}\\
+                    &< \frac{2(b - a)}{M} = \varepsilon,
+    \end{align*}
+    isto é, \(s_n\) é uma sequência de Cauchy em relação à métrica usual.
+
+
+    Dado \(\varepsilon > 0\) podemos tomar \(N = \frac{\varepsilon}{b - a}\) tal que para todo \(n > N\) temos
+    \begin{equation*}
+        d(a, s_n) = \frac{b - a}{n} < \varepsilon,
+    \end{equation*}
+    isto é, \(s_n\) converge a \(a \notin \mathring{A}\) em relação à métrica usual.
+
+    Encontramos uma sequência de Cauchy em \((\mathring{A}, d)\) que não converge neste espaço métrico, portanto \((\mathring{A},d)\) não é completo.
+\end{proof}
+
+\begin{proposition}{O intervalo fechado \([a,b]\) é um espaço métrico completo em relação à métrica usual}{fechado}
+    Consideremos o intervalo fechado \(\bar{A} = [a,b] \subset \mathbb{R}\) e a métrica usual \(d\). O espaço métrico \((\bar{A}, d)\) é completo.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
