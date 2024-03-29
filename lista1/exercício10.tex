@@ -83,7 +83,7 @@
         \abs{g(x) - g(y)} = g'(\xi)\abs{x - y} \leq \frac1e \abs{x - y}.
     \end{equation*}
 
-    Assim, mostramos que \(g\) é uma contração em \([0, \infty)\) em relação à métrica usual. Como \([0, \infty) = [0,1]\cup[1, \infty)\), temos pelo \cref{lem:união_completa,prop:fechado,prop:intervalo1inf} que este intervalo, dotado da métrica usual, é um espaço métrico completo. Assim, segue que \(g\) tem um único ponto fixo neste espaço, pelo teorema do ponto fixo de Banach. Pelo \cref{lem:ponto_fixo_iteração}, segue que \(f\) tem um único ponto fixo, que é \(\Omega\).
+    Assim, mostramos que \(g\) é uma contração em \([0, \infty)\) em relação à métrica usual. Como \([0, \infty) = [0,1]\cup[1, \infty)\), temos pelo \cref{lem:união_completa} e pelas \cref{prop:fechado,prop:intervalo1inf} que este intervalo, dotado da métrica usual, é um espaço métrico completo. Assim, segue que \(g\) tem um único ponto fixo neste espaço, pelo teorema do ponto fixo de Banach. Pelo \cref{lem:ponto_fixo_iteração}, segue que \(f\) tem um único ponto fixo, que é \(\Omega\).
 \end{proof}
 
 Utilizando o código a seguir, obtemos após quarenta iterações um erro absoluto compatível com a precisão máxima oferecida pela biblioteca \verb|numpy|. O valor obtido pelo programa foi \(\Omega \simeq0.567143290409783873\). Após quarenta iterações e utilizando o ponto inicial \(x_0 = 0,\) o erro estimado é \(\Omega - x_{40} \leq \frac{e^{-41}}{1 - e^{-1}}.\)
