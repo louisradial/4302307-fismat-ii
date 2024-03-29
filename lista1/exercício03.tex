@@ -9,7 +9,12 @@
 \begin{proof}
     Notemos que a imagem da função \(d_1\) está contida na semirreta \([0,\infty)\).
 
-    Suponhamos que duas funções \(f,g \in X\) satisfazem \(d_1(f,g)=0\). Certamente essas funções devem ser diferentes em no máximo um conjunto de medida nula. Como as funções são contínuas, este conjunto deve ser vazio. Desse modo, \(f = g\) em \([0,1]\).
+    Suponhamos que duas funções \(f,g \in X\) satisfazem \(d_1(f,g)=0\). Certamente essas funções devem ser diferentes em no máximo um conjunto de medida nula. Como as funções são contínuas, este conjunto deve ser vazio. De fato, seja \(h \in X\) definida por \(h(x) = f(x) - g(x)\) e suponhamos por contradição que existe \(\xi \in [0,1]\) tal que \(h(\xi) \neq 0\). Podemos assumir sem perda de generalidade que \(h(\xi) > 0\), então pelo teorema do valor intermediário, existe \(\delta > 0\) tal que para todo \(x \in (\xi - \delta, \xi + \delta)\) temos \(h(x) > 0\). Assim,
+    \begin{equation*}
+        \int_{\xi-\delta}^{\xi+\delta}\dli{x} \abs{h(x)} > 0 \implies \int_0^1 \dli{x} \abs{f(x) - g(x)} > 0,
+    \end{equation*}
+    e esta contradição mostra que \(f = g\).
+
     Suponhamos agora que duas funções são iguais \(f = g\). Claramente temos \(d_1(f,g) = 0\). Desse modo,
     \begin{equation*}
         f = g \iff d_1(f,g) = 0.
