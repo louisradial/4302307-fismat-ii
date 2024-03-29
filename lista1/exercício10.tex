@@ -16,34 +16,19 @@
     portanto \(x\) é um outro ponto fixo de \(g\). Esta contradição mostra que \(y\) é o único ponto fixo de \(f\) em \(X\).
 \end{proof}
 
-\begin{lemma}{Subsequência convergente de uma sequência de Cauchy}{subsequência}
-    Seja \((X,d)\) um espaço métrico e seja \family{x_n}{n\in \mathbb{N}} uma sequência de Cauchy em \((X,d)\). Se existe uma sequência crescente \family{n_j}{j\in\mathbb{N}} de números naturais tal que a subsequência \family{x_{n_j}}{j_\in\mathbb{N}} é convergente em \((X,d)\), então \(x_n\) converge em \((X,d)\).
-\end{lemma}
-\begin{proof}
-    Dado \(\varepsilon > 0,\) existe \(N > 0\) tal que para todo \(m,n > N\) vale
-    \begin{equation*}
-        d(x_n, x_m) < \frac12 \varepsilon,
-    \end{equation*}
-    já que a sequência é de Cauchy em relação à métrica \(d\).
-
-    Seja \(x \in X\) o ponto ao qual a subsequência converge. Então dado \(\varepsilon > 0,\) existe \(J > 0\) tal que para todo \(n_j > J\) vale
-    \begin{equation*}
-        d(x_{n_j}, x) < \frac12 \varepsilon.
-    \end{equation*}
-
-    Seja \(M = \max\set{N,J}\), então para todos \(m, n_j > M\) segue que
-    \begin{align*}
-        d(x_m, x) &\leq d(x_m, x_{n_j}) + d(x_{n_j}, x)\\
-                  &\leq \varepsilon,
-    \end{align*}
-    isto é, a sequência de Cauchy converge para \(x \in X\) em relação à métrica \(d\).
-\end{proof}
-
 \begin{lemma}{União finita de subespaços métricos completos é um espaço métrico completo}{união_completa}
-    Seja \((M,d)\) um espaço métrico e sejam \(M_1, M_2 \subset M\) subconjuntos não vazios. Se \((M_1, \restrict{d}{M_1})\) e \((M_2, \restrict{d}{M_2})\) são espaços métricos completos, então \((X, \restrict{d}{X})\) é um espaço métrico completo, com \(X = M_1 \cup M_2\).
+    Seja \((M,d)\) um espaço métrico e sejam \(M_1, M_2 \subset M\) subconjuntos não vazios. Se \((M_1, \restrict{d}{M_1\times M_1})\) e \((M_2, \restrict{d}{M_2\times M_2})\) são espaços métricos completos, então \((X, \restrict{d}{X\times X})\) é um espaço métrico completo, com \(X = M_1 \cup M_2\).
 \end{lemma}
 \begin{proof}
-    Seja \family{x_n}{n\in \mathbb{N}} uma sequência de Cauchy em \(X\). Então existe \(k \in \set{1,2}\) tal que existem infinitos \(x_n \in M_k\). Assim, existe uma sequência crescente \family{n_j}{j\in \mathbb{N}} de números naturais tal que \(\family{x_{n_j}}{j\in \mathbb{N}} \subset M_k\) é uma subsequência em \((M_k,\restrict{d}{M_k})\). Como a sequência é de Cauchy em \((X, \restrict{d}{X})\), então esta subsequência é de Cauchy em \((M_k, \restrict{d}{M_k})\), logo convergente neste espaço métrico completo. Pelo \cref{lem:subsequência}, segue que \family{x_n}{n\in \mathbb{N}} converge em \((X, \restrict{d}{X})\), o que conclui a demonstração.
+    Seja \family{x_n}{n\in \mathbb{N}} uma sequência de Cauchy em \(X\). Então existe \(k \in \set{1,2}\) tal que existem infinitos \(x_n \in M_k\). Assim, existe uma sequência crescente \family{n_j}{j\in \mathbb{N}} de números naturais tal que \(\family{x_{n_j}}{j\in \mathbb{N}} \subset M_k\) é uma subsequência em \((M_k,\restrict{d}{M_k \times M_k})\). Como a sequência é de Cauchy em \((X, \restrict{d}{X\times X})\), segue que dado \(\varepsilon > 0\), existe \(N > 0\) tal que para todo \(n,m > N\) vale
+    \begin{equation*}
+        \restrict{d}{X\times X}(x_n, x_m) < \varepsilon,
+    \end{equation*}
+    em particular para \(n_i, n_j > N\) temos
+    \begin{equation*}
+        \restrict{d}{X\times X}(x_{n_i}, x_{n_j}) = \restrict{d}{M_k \times M_k}(x_{n_i}, x_{n_j}) < \varepsilon,
+    \end{equation*}
+    então esta subsequência é de Cauchy em \((M_k, \restrict{d}{M_k\times M_k})\), logo convergente neste espaço métrico completo. Pelo \cref{lem:subsequência}, segue que \family{x_n}{n\in \mathbb{N}} converge em \((X, \restrict{d}{X\times X})\), o que conclui a demonstração.
 \end{proof}
 \begin{proposition}{Constante Omega}{lambert}
     A única solução de
@@ -98,11 +83,10 @@
         \abs{g(x) - g(y)} = g'(\xi)\abs{x - y} \leq \frac1e \abs{x - y}.
     \end{equation*}
 
-    Assim, mostramos que \(g\) é uma contração em \([0, \infty)\) em relação à métrica usual. Como \([0, \infty) = [0,1]\cup[1, \infty)\), temos pelo \todo[\cref{lem:união_completa,exercício9}] que este intervalo, dotado da métrica usual, é um espaço métrico completo. Assim, segue que \(g\) tem um único ponto fixo neste espaço, pelo teorema do ponto fixo de Banach. Pelo \cref{lem:ponto_fixo_iteração}, segue que \(f\) tem um único ponto fixo, que é \(\Omega\).
+    Assim, mostramos que \(g\) é uma contração em \([0, \infty)\) em relação à métrica usual. Como \([0, \infty) = [0,1]\cup[1, \infty)\), temos pelo \cref{lem:união_completa,prop:fechado,prop:intervalo1inf} que este intervalo, dotado da métrica usual, é um espaço métrico completo. Assim, segue que \(g\) tem um único ponto fixo neste espaço, pelo teorema do ponto fixo de Banach. Pelo \cref{lem:ponto_fixo_iteração}, segue que \(f\) tem um único ponto fixo, que é \(\Omega\).
 \end{proof}
 
 Utilizando o código a seguir, obtemos após quarenta iterações um erro absoluto compatível com a precisão máxima oferecida pela biblioteca \verb|numpy|. O valor obtido pelo programa foi \(\Omega \simeq0.567143290409783873\). Após quarenta iterações e utilizando o ponto inicial \(x_0 = 0,\) o erro estimado é \(\Omega - x_{40} \leq \frac{e^{-41}}{1 - e^{-1}}.\)
-\begin{listing}[h]
+\begin{listing}[htbp]
     \inputminted[linenos]{Python}{exercício10.py}
 \end{listing}
-% https://math.stackexchange.com/questions/494558/proving-that-union-of-a-finite-number-of-complete-subsets-of-metric-space-x-d?rq=1
