@@ -1,2 +1,102 @@
 \section*{Exercício 7}
+\begin{proposition}{Sequência de Cauchy em \((\mathcal{C}([0,1]), d_1)\)}{sequência_funções}
+    A sequência de funções \(f : \mathbb{N} \to \mathcal{C}([0,1])\) com \(f_0(x) = f_1(x) = f_2(x) = 1\) e
+    \begin{equation*}
+        f_n(x) = \begin{cases}
+            0, & \text{se }x \in \left[0, \frac12 - \frac1n\right]\\
+            n \left(x - \frac12 + \frac1n\right), & \text{se }x \in \left(\frac12 - \frac1n, \frac12\right)\\
+            1, & \text{se }x \in \left[\frac12, 1\right]
+        \end{cases}
+    \end{equation*}
+    para \(n > 2\) é de Cauchy no espaço métrico \((\mathcal{C}([0,1]), d_1),\) onde a métrica \(d_1\) está definida na \cref{prop:métrica_d1}.
+\end{proposition}
+\begin{proof}
+    Claramente \(f_0, f_1, f_2 \in \mathcal{C}([0,1])\). Para \(n > 2\), temos
+    \begin{equation*}
+        \lim_{x\to \left(\frac12-\frac1n\right)^+} f_n(x) = \lim_{x\to\left(\frac12-\frac1n\right)^+} n\left(x-\frac12+\frac1n\right) = 0 = f_n\left(\frac12-\frac1n\right)
+    \end{equation*}
+    e
+    \begin{equation*}
+        \lim_{x\to \left(\frac12-\frac1n\right)^-} f_n(x) = 0 = f_n\left(\frac12-\frac1n\right),
+    \end{equation*}
+    portanto \(f_n \in \mathcal{C}([0,1])\).
 
+    Para \(n > m > 2\) temos
+    \begin{equation*}
+        f_n(x) - f_m(x) = \begin{cases}
+            0, &\text{se }x \in \left[0, \frac12-\frac1m\right]\\
+            -m\left(x - \frac12 + \frac1m\right)&\text{se }x \in \left(\frac12 - \frac1m, \frac12-\frac1n\right]\\
+            (n-m)\left(x - \frac12\right)&\text{se }x \in \left(\frac12 - \frac1n, \frac12\right]\\
+            0, &\text{se }x \in \left[\frac12, 1\right]\\
+        \end{cases},
+    \end{equation*}
+    então
+    \begin{equation*}
+        \abs{f_n(x) - f_m(x)} = \begin{cases}
+            0, &\text{se }x \in \left[0, \frac12-\frac1m\right]\\
+            m\left(x - \frac12 + \frac1m\right)&\text{se }x \in \left(\frac12 - \frac1m, \frac12-\frac1n\right]\\
+            (m-n)\left(x - \frac12\right)&\text{se }x \in \left(\frac12 - \frac1n, \frac12\right)\\
+            0, &\text{se }x \in \left[\frac12, 1\right]\\
+        \end{cases}.
+    \end{equation*}
+    Assim, temos
+    \begin{align*}
+        d_1(f_n, f_m) &= \int_0^1\dli{x} \abs{f_n(x) - f_m(x)} \\
+                      &= \int_{\frac12-\frac1m}^{\frac12 - \frac1n}\dli{x} m\left(x - \frac12 + \frac1m\right) + \int_{\frac12-\frac1n}^{\frac12} \dli{x} (m-n)\left(x - \frac12\right)\\
+                      &= \int_{-\frac1m}^{-\frac1n}\dli{u} m\left(u + \frac1m\right) + \int_{-\frac1n}^{0} \dli{u} (m-n)u\\
+                      &= \frac{m}{2}\left(\frac{1}{n^2} - \frac{1}{m^2}\right) - \frac1n + \frac1m - \frac{m-n}{2n^2}\\
+                      &= \frac{1}{2m}-\frac{1}{2n},
+    \end{align*}
+    donde segue
+    \begin{equation*}
+        d_1(f_n, f_m) = \frac12\abs*{\frac1m - \frac1n}
+    \end{equation*}
+    para todos \(n,m > 2\).
+
+    Dado \(\varepsilon > 0\), para \(n,m > \frac{1}{\varepsilon}\) temos
+    \begin{align*}
+        d_1(f_n, f_m) &= \frac12\abs*{\frac1m - \frac1n}\\
+                      &\leq \abs*{\frac1{2m}} + \abs*{\frac{1}{2n}}\\
+                      &< \varepsilon,
+    \end{align*}
+    portanto a sequência é de Cauchy em \((\mathcal{C}([0,1]), d_1)\).
+\end{proof}
+
+\begin{proposition}{O espaço métrico \((\mathcal{C}([0,1]), d_1)\) não é completo}{exercício_7}
+    A sequência de funções da \cref{prop:sequência_funções} converge para a função \(\varphi : [0,1] \to \mathbb{R}\) definida por
+    \begin{equation*}
+        \varphi(x) = \begin{cases}
+            0, &\text{se }x \in [0,\frac12)\\
+            1, &\text{se }x \in [\frac12,1],
+        \end{cases}
+    \end{equation*}
+    que não é uma função contínua.
+\end{proposition}
+\begin{proof}
+    Para \(n > 2\) temos
+    \begin{equation*}
+        \abs{f_n(x) - \varphi(x)} = \begin{cases}
+            0, &\text{se }x \in \left[0, \frac12-\frac1n\right]\\
+            n\left(x - \frac12\right) + 1&\text{se }x \in \left(\frac12 - \frac1n, \frac12\right]\\
+            0, &\text{se }x \in \left[\frac12, 1\right]\\
+        \end{cases}.
+    \end{equation*}
+    Assim, temos
+    \begin{align*}
+        d_1(f_n, \varphi) &= \int_0^1\dli{x} \abs{f_n(x) - \varphi(x)} \\
+                          &= \int_{\frac12-\frac1n}^{\frac12}\dli{x} \left[n\left(x - \frac12\right) + 1\right]\\
+                          &= \frac1{2n}.
+    \end{align*}
+
+    Dado \(\varepsilon > 0\), temos
+    \begin{equation*}
+        n > \frac{1}{2\varepsilon} \implies d_1(f_n, \varphi) = \frac{1}{2n} < \varepsilon,
+    \end{equation*}
+    portanto a sequência é convergente a \(\varphi\) em relação à métrica \(d_1\).
+
+    Notemos que
+    \begin{equation*}
+        \lim_{x \to \frac12^+} \varphi(x) = 1\quad\text{e}\quad\lim_{x\to\frac12^-}\varphi(x) = 0,
+    \end{equation*}
+    isto é, a função \(\varphi\) não pode ser contínua. Assim, o espaço métrico \((\mathcal{C}([0,1]),d_1)\) não é completo.
+\end{proof}
