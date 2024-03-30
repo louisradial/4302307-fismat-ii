@@ -20,9 +20,41 @@
 
     Pela \cref{prop:exercício_5}, temos
     \begin{equation*}
-        \abs{x_n - x_m} < \frac{1}{(m+1)!}\frac{m + 2}{m + 1}.
+        \abs{x_n - x_m} < \frac{1}{(m+1)!}\frac{m + 2}{m + 1} < \frac{2}{(m+1)!},
     \end{equation*}
-    Assim, podemos tornar \(\abs{x_n - x_m}\) arbitrariamente pequeno ao escolher \(m\) suficientemente grande, isto é, a sequência é de Cauchy em relação à métrica usual.
+    para \(m > 0\). Assim, podemos tornar \(\abs{x_n - x_m}\) arbitrariamente pequeno ao escolher \(m\) suficientemente grande, isto é, a sequência é de Cauchy em relação à métrica usual.
 
-    Sabemos que esta sequência converge a \(e \in \mathbb{R} \smallsetminus \mathbb{Q}\), pela definição de exponencial. Desse modo, a sequência não é convergente nos racionais com a métrica usual.
+    Suponhamos por contradição que a sequência converge a algum número racional \(e = \frac{p}{q}\), com \(p\) e \(q\) coprimos. Assim, dado \(\varepsilon > 0\), existe \(N > 0\) tal que
+    \begin{equation*}
+        n > N \implies \abs{e - x_n} < \varepsilon.
+    \end{equation*}
+    Pela desigualdade triangular, temos
+    \begin{align*}
+        \abs{e - x_m} &\leq \abs{e - x_n} + \abs{x_n - x_m}\\
+                      &< \varepsilon + \frac{2}{(m+1)!}
+    \end{align*}
+    para \(m > 0\) e \(n > N\). Como \(\varepsilon\) é arbitrário, temos
+    \begin{equation*}
+        \abs{e - x_m} \leq \frac{2}{(m+1)!},
+    \end{equation*}
+    para \(m > 0\). Como a sequência é estritamente crescente, temos \(e > x_m\), logo
+    \begin{equation*}
+        x_m < e \leq x_m + \frac{2}{(m+1)!}.
+    \end{equation*}
+    Em particular, tomemos \(m = 2,\) então
+    \begin{equation*}
+        \frac52 < e \leq \frac{17}{6},
+    \end{equation*}
+    portanto \(2 < e < 3\), isto é, \(q \geq 2\), caso contrário \(e\) seria um inteiro entre inteiros consecutivos.
+
+    Podemos tomar \(m = q\), de modo que
+    \begin{align*}
+        x_q < \frac{p}{q} \leq x_q + \frac{2}{(q+1)!} &\implies q!x_q < p(q-1)! \leq q!x_q + \frac{2}{(q+1)}\\
+                                                      &\implies \sum_{k = 0}^{q} \frac{q!}{k!} < p(q-1)! < \sum_{k = 0}^{q} \frac{q!}{k!} + 1,
+    \end{align*}
+    já que
+    \begin{equation*}
+        q \geq 2 \implies \frac{2}{q+1} < 1.
+    \end{equation*}
+    Notemos que \(\frac{q!}{k!} \in \mathbb{N}\) para todo \(k \in \set{0, 1, \dots, q}\), isto é, \(p(q - 1)!\) é um número natural entre inteiros consecutivos. Essa contradição mostra que \(e \notin \mathbb{Q}.\) Desse modo, a sequência não é convergente nos racionais com a métrica usual.
 \end{proof}
