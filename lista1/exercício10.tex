@@ -17,7 +17,7 @@
 \end{proof}
 
 \begin{lemma}{União finita de subespaços métricos completos é um espaço métrico completo}{união_completa}
-    Seja \((M,d)\) um espaço métrico e sejam \(M_1, M_2 \subset M\) subconjuntos não vazios. Se \((M_1, \restrict{d}{M_1\times M_1})\) e \((M_2, \restrict{d}{M_2\times M_2})\) são espaços métricos completos, então \((X, \restrict{d}{X\times X})\) é um espaço métrico completo, com \(X = M_1 \cup M_2\).
+    Seja \((M,d)\) um espaço métrico e sejam \(M_1, M_2 \subset M\) subconjuntos não vazios de \(M\). Se \((M_1, \restrict{d}{M_1\times M_1})\) e \((M_2, \restrict{d}{M_2\times M_2})\) são espaços métricos completos, então \((X, \restrict{d}{X\times X})\) é um espaço métrico completo, com \(X = M_1 \cup M_2\).
 \end{lemma}
 \begin{proof}
     Seja \family{x_n}{n\in \mathbb{N}} uma sequência de Cauchy em \(X\). Então existe \(k \in \set{1,2}\) tal que existem infinitos \(x_n \in M_k\). Assim, existe uma sequência crescente \family{n_j}{j\in \mathbb{N}} de números naturais tal que \(\family{x_{n_j}}{j\in \mathbb{N}} \subset M_k\) é uma subsequência em \((M_k,\restrict{d}{M_k \times M_k})\). Como a sequência é de Cauchy em \((X, \restrict{d}{X\times X})\), segue que dado \(\varepsilon > 0\), existe \(N > 0\) tal que para todo \(n,m > N\) vale
@@ -65,10 +65,9 @@
                &= \left(f(t) - 1\right) f(t) g(t).
     \end{align*}
     Notemos que
-    \begin{align*}
-        t \in [0, \infty) &\implies 0 < f(t) \leq 1\\
-                          &\implies -1 < f(t) - 1 \leq 0
-    \end{align*}
+    \begin{equation*}
+        t \in [0, \infty) \implies -1 < f(t) - 1 \leq 0
+    \end{equation*}
     onde a igualdade ocorre apenas para \(t = 0\), portanto \(g''(t) \leq 0\) para todo \(t \geq 0\), isto é, \(g'(t)\) decresce monotonicamente em \([0, \infty)\). Desse modo, temos
     \begin{equation*}
         t \in [0, \infty) \implies 0 < g'(t) \leq \frac1e.
@@ -88,5 +87,5 @@
 
 Utilizando o código a seguir, obtemos após quarenta iterações um erro absoluto compatível com a precisão máxima oferecida pela biblioteca \verb|numpy|. O valor obtido pelo programa foi \(\Omega \simeq0.567143290409783873\). Após quarenta iterações e utilizando o ponto inicial \(x_0 = 0,\) o erro estimado é \(\Omega - x_{40} \leq \frac{e^{-41}}{1 - e^{-1}}.\)
 \begin{listing}[htbp]
-    \inputminted[linenos]{Python}{exercício10.py}
+    \inputminted[linenos,fontsize=\footnotesize]{Python}{exercício10.py}
 \end{listing}
