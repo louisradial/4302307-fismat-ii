@@ -30,9 +30,9 @@
     \end{equation*}
     para todo \(\xi \in [0,\infty)\). Isto é, \(f'(\xi) > 0\) em todo o seu domínio, portanto é uma função crescente.
 
-    Desse modo, como \(f\) mantém a relação de ordem, isto é,
+    Desse modo, como \(f\) mantém a relação de ordem e \(d_0 = f \circ d\), segue que
     \begin{align*}
-        d(x,y) \leq d(x,z) + d(z, y) &\implies d_0(x,y) \leq f(d(x,z) + d(z,y))\\
+        d(x,y) \leq d(x,z) + d(z, y) &\implies (f\circ d)(x,y) \leq f(d(x,z) + d(z,y))\\
                                      &\implies d_0(x,y) \leq \frac{d(x,z) + d(z,y)}{1 + d(x,z) + d(z,y)},
     \end{align*}
     para todo \(x,y,z \in M\). Notemos que
