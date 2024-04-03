@@ -15,7 +15,7 @@
     \end{equation*}
     para \(n \geq 2\).
 
-    Dado \(\varepsilon > 0\), podemos tomar \(M = \frac{\varepsilon}{2(b - a)}\) tal que para todos \(n,m > M\) vale
+    Dado \(\varepsilon > 0\), podemos tomar \(M = \frac{2(b-a)}{\varepsilon}\) tal que para todos \(n,m > M\) vale
     \begin{align*}
         d(s_m, s_n) &= (b - a) \abs*{\frac{1}{m} - \frac{1}{n}}\\
                     &\leq \frac{b - a}{m} + \frac{b - a}{n}\\
@@ -24,14 +24,17 @@
     isto é, \(s_n\) é uma sequência de Cauchy em relação à métrica usual.
 
 
-    Dado \(\varepsilon > 0\) podemos tomar \(N = \frac{\varepsilon}{b - a}\) tal que para todo \(n > N\) temos
+    Dado \(\varepsilon > 0\) podemos tomar \(N = \frac{b-a}{\varepsilon}\) tal que para todo \(n > N\) temos
     \begin{equation*}
-        d(a, s_n) = \frac{b - a}{n} < \varepsilon,
+        d(a, s_n) = \frac{b - a}{n} < \frac{b-a}{N} = \varepsilon,
     \end{equation*}
     isto é, \(s_n\) converge a \(a \notin \mathring{A}\) em relação à métrica usual.
 
     Encontramos uma sequência de Cauchy em \((\mathring{A}, d)\) que não converge neste espaço métrico, portanto \((\mathring{A},d)\) não é completo.
 \end{proof}
+\begin{corollary}
+    O intervalo \((0,1)\) não é completo em relação à métrica usual.
+\end{corollary}
 
 \begin{lemma}{Toda sequência de números reais tem uma subsequência monotônica}{monotônica}
     Seja \(s: \mathbb{N} \to X \subset \mathbb{R}\) uma sequência de números reais. Então existe uma sequência crescente de números naturais \(n : \mathbb{N} \to \mathbb{N}\) tal que a subsequência \(s\circ n\) é monotônica, isto é, ou é monotônica decrescente \(s_{n_{i}} \leq s_{n_{j}}\) para todo \(i > j\), ou é monotônica crescente \(s_{n_{i}} \geq s_{n_{j}}\) para todo \(i > j\).
@@ -39,21 +42,44 @@
 \begin{proof}
     Consideremos o conjunto
     \begin{equation*}
-        S = \set{k \in \mathbb{N} : s_k \geq s_m, \forall m > k}
+        S = \set{k \in \mathbb{N} : m > k \implies s_k \geq s_m}
     \end{equation*}
     dos índices dos elementos da sequência que são maiores que os elementos subsequentes.
 
-    Se \(S\) é infinito, então existe uma sequência crescente de números naturais \(n : \mathbb{N} \to S \subset \mathbb{N}\) definida pela enumeração dos elementos de \(S\) tal que a subsequência \(s \circ n\) é monotônica decrescente. De fato, sejam \(n_i, n_j \in S\) com \(i < j \implies n_i < n_j\), então
+    Se \(S\) é infinito, então existe uma sequência crescente de números naturais \(n : \mathbb{N} \to S \subset \mathbb{N}\) definida por uma enumeração dos elementos de \(S\) tal que a subsequência \(s \circ n\) é monotônica decrescente. De fato, sejam \(n_i, n_j \in S\) com \(i < j \implies n_i < n_j\), então
     \begin{equation*}
         n_i \in S \implies s_{n_i} \geq s_{n_j},
     \end{equation*}
     isto é, \(s\circ n\) é monotônica decrescente.
 
-    Se \(S\) não é infinito, existe \(n_0 \in \mathbb{N}\) tal que \(m \geq n_0 \implies m \notin S\), então \(s_{m} < s_{\ell}\) para algum \(\ell > m\). No caso em que \(S\) é vazio, podemos tomar \(n_0 = 0\) e no caso em que \(S\) é finito, podemos tomar \(n_0 = 1 + \max S\). Assim, existe \(n_1 > n_0\) tal que \(s_{n_0} < s_{n_1}\), portanto podemos definir uma sequência crescente de números naturais \(n\) tal que \(s\circ n\) é monotônica crescente.
+    Se \(S\) não é infinito, então o seu complemento \(T = \mathbb{N} \smallsetminus S\) é infinito. Notemos que
+    \begin{equation*}
+        T = \set{k \in \mathbb{N} : \exists m > k\text{ tal que }s_k < s_m}.
+    \end{equation*}
+    Dado \(k \in T\), temos que o conjunto
+    \begin{equation*}
+        M_k = \set{m > k : s_m > s_a},
+    \end{equation*}
+    é não vazio, pela definição de \(T\). Assim, podemos definir a sequência \(n : \mathbb{N} \to T \subset \mathbb{N}\) com
+    \begin{equation*}
+        T \ni n_0 = \begin{cases}
+            0 &\text{ se }S=\emptyset\\
+            1 + \max{S}&\text{ se }S \neq \emptyset
+        \end{cases}
+    \end{equation*}
+    e
+    \begin{equation*}
+        n_{i+1} = \min{M_{n_i}}.
+    \end{equation*}
+    Desse modo, temos
+    \begin{equation*}
+        i < j \implies s_{n_{i}} < s_{n_{i+1}} < \dots < s_{n_{j-1}} < s_{n_j},
+    \end{equation*}
+    isto é, \(s\circ n\) é uma subsequência monotônica crescente.
 \end{proof}
 
 \begin{lemma}{Subsequência convergente de uma sequência de Cauchy}{subsequência}
-    Seja \((X,d)\) um espaço métrico e seja \family{x_n}{n\in \mathbb{N}} uma sequência de Cauchy em \((X,d)\). Se existe uma sequência crescente \family{n_j}{j\in\mathbb{N}} de números naturais tal que a subsequência \family{x_{n_j}}{j_\in\mathbb{N}} é convergente em \((X,d)\), então \(x_n\) converge em \((X,d)\).
+    Seja \((X,d)\) um espaço métrico e seja \family{x_n}{n\in \mathbb{N}} uma sequência de Cauchy em \((X,d)\). Se existe uma sequência crescente \family{n_j}{j\in\mathbb{N}} de números naturais tal que a subsequência \family{x_{n_j}}{j\in\mathbb{N}} é convergente em \((X,d)\), então \(x_n\) converge em \((X,d)\).
 \end{lemma}
 \begin{proof}
     Dado \(\varepsilon > 0,\) existe \(N > 0\) tal que para todo \(m,n > N\) vale
@@ -90,7 +116,7 @@
     \end{align*}
     logo \(x\) é de Cauchy.
 
-    Podemos assumir sem perda de generalidade que a subsequência é monotônica decrescente. Como uma sequência de Cauchy em \((\mathbb{R}, d)\), segue que existe \(\xi \in \mathbb{R}\) tal que \(x\) converge a \(\xi\) em relação a este espaço métrico completo. Assim, dado \(\varepsilon > 0\), existe \(N_{\varepsilon} > 0\) tal que
+    Suponhamos que a subsequência é monotônica decrescente. Como uma sequência de Cauchy em \((\mathbb{R}, d)\), segue que existe \(\xi \in \mathbb{R}\) tal que \(x\) converge a \(\xi\) em relação a este espaço métrico completo. Assim, dado \(\varepsilon > 0\), existe \(N_{\varepsilon} > 0\) tal que
     \begin{equation*}
         i > N_{\varepsilon} \implies d(x_i, \xi) < \varepsilon.
     \end{equation*}
@@ -100,7 +126,17 @@
               &\implies \frac{3\xi - a}2 < x_i < \frac{a + \xi}2.
     \end{align*}
     Notemos entretanto que \(a + \xi < 2a\), portanto devemos ter \(x_i < a\). Esta contradição mostra que \(\xi \in [a,b]\), portanto \(x\) converge para algum valor de \([a,b]\). Pelo \cref{lem:subsequência}, a sequência de Cauchy \(s\) converge em \(([a,b],d)\).
+
+    Um argumento análogo pode ser feito para o caso em que a subsequência é monotônica crescente. Neste caso, \(\xi > b\), então podemos tomar \(\epsilon = \frac{\xi - b}{2}\), então existe \(N > 0\) tal que
+    \begin{align*}
+        i > N &\implies - \frac{\xi - b}2 < x_i - \xi < \frac{\xi - b}2\\
+              &\implies \frac{b + \xi}2 < x_i < \frac{3\xi - b}2.
+    \end{align*}
+    Então deveríamos ter \(x_i > b\), o que não pode acontecer. Assim, concluímos que a sequência de Cauchy \(s\) deve convergir em \(([a,b],d)\).
 \end{proof}
+\begin{corollary}
+    O intervalo \([0,1]\) é um espaço métrico completo em relação à métrica usual.
+\end{corollary}
 
 \begin{lemma}{Desigualdade triangular inversa}{desigualdade}
     Seja \((X,d)\) um espaço métrico, então
@@ -159,7 +195,7 @@
 
     Assim, definimos
     \begin{equation*}
-        M = \max\set*{\abs{s_0}, \abs{s_1}, \dots, \abs{s_{n_0}}, \abs{s_{n_0}}+ 1}
+        M = \max\set*{\abs{s_0}, \abs{s_1}, \dots, \abs{s_{n_0-1}}, \abs{s_{n_0}}, \abs{s_{n_0}}+ 1}
     \end{equation*}
     de forma que
     \begin{equation*}
@@ -168,12 +204,18 @@
     para todo \(n \in \mathbb{N}\).
 \end{proof}
 
-\begin{proposition}{O intervalo \([1,\infty)\) é um espaço métrico completo em relação à métrica usual}{intervalo1inf}
-    O espaço métrico \(([1,\infty), d)\), em que \(d\) é a métrica usual, é completo.
+\begin{proposition}{O intervalo \([a,\infty)\) é um espaço métrico completo em relação à métrica usual}{intervalo1inf}
+    O espaço métrico \(([a,\infty), d)\), em que \(d\) é a métrica usual, é completo.
 \end{proposition}
 \begin{proof}
-    Seja \(s : \mathbb{N} \to [1,\infty)\) uma sequência de Cauchy em relação à métrica usual. Pelo \cref{lem:limitada}, existe \(M > 0\) tal que \(\abs{s_n} \leq M\). Desse modo, a imagem da sequência deve estar contida no intervalo fechado \([1, M]\). Isto é, \(s\) é uma sequência de Cauchy no espaço métrico \([1, M]\), que é completo em relação à métrica usual pela \cref{prop:fechado}, logo existe \(\sigma \in [1,M]\) ao qual \(s\) converge. Como \([1, M] \subset [1, \infty)\), então \(\sigma \in [1, \infty)\). Assim, \(([1,\infty), d)\) é um espaço métrico completo em relação à métrica usual.
+    Seja \(s : \mathbb{N} \to [a,\infty)\) uma sequência de Cauchy em relação à métrica usual. Pelo \cref{lem:limitada}, existe \(M > 0\) tal que \(\abs{s_n} \leq M\). Desse modo, a imagem da sequência deve estar contida no intervalo fechado \([a, M]\). Isto é, \(s\) é uma sequência de Cauchy no espaço métrico \([a, M]\), que é completo em relação à métrica usual pela \cref{prop:fechado}, logo existe \(\sigma \in [a,M]\) ao qual \(s\) converge. Como \([a, M] \subset [a, \infty)\), então \(\sigma \in [a, \infty)\). Assim, \(([a,\infty), d)\) é um espaço métrico completo em relação à métrica usual.
 \end{proof}
+\begin{corollary}
+    O intervalo \((-\infty, a]\) é completo em relação à métrica usual.
+\end{corollary}
+\begin{corollary}
+    O intervalo \([1, \infty)\) é completo em relação à métrica usual.
+\end{corollary}
 
 \begin{proposition}{Métrica no intervalo \([1, \infty)\)}{métrica_recíproca}
     O espaço métrico \(([1,\infty), d_I)\) não é completo, onde a métrica \(d_I\) é a aplicação
@@ -206,7 +248,7 @@
 
     Consideremos a sequência \(s : \mathbb{N} \to [1,\infty)\) definida por \(s_0 = 1\) e \(s_n = n\) para \(n \geq 1\). Dado \(\varepsilon > 0\), tomemos \(N = \frac{2}{\varepsilon}\), então para todos \(n,m > N\) vale
     \begin{align*}
-        d_I(s_n, s_m) &= \abs*{\frac1{n} - \frac1{m+1}}\\
+        d_I(s_n, s_m) &= \abs*{\frac1{n} - \frac1{m}}\\
                       &\leq \frac{1}{n} + \frac{1}{m}\\
                       &< \frac{2}{N} = \varepsilon,
     \end{align*}
@@ -222,5 +264,3 @@
     \end{align*}
     para todo \(n > M\). Isto é, \(2\sigma\) deve ser maior do que qualquer número natural maior do que \(M\), o que contradiz a propriedade arquimediana dos números reais. De fato, se \(k \in \mathbb{N}\) é tal que \(k > M\) e \(s_{k} < 2\sigma\), então existe \(\ell \in \mathbb{N}\) tal que \(\ell s_{k} > 2\sigma\), ou seja, \(\ell k > M\) e \(s_{\ell k} > 2\sigma\). Dessa forma, não pode existir \(\sigma \in [1,\infty)\) ao qual a sequência de Cauchy \(s\) converge em relação à métrica \(d_I\), portanto este espaço métrico não é completo.
 \end{proof}
-
-% https://www.u.arizona.edu/~mwalker/econ519/Econ519LectureNotes/CompleteMetricSpaces.pdf
