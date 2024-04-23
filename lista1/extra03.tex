@@ -1,0 +1,29 @@
+\section*{Exercício extra 3}
+\begin{definition}{Mapa logístico}{mapa_logístico}
+    A aplicação
+    \begin{align*}
+        T_a : \mathbb{R} &\to \mathbb{R}\\
+                       x &\mapsto ax(1 - x)
+    \end{align*}
+    é chamada de \emph{mapa logístico} ao parâmetro \(a\).
+\end{definition}
+
+\begin{proposition}{Pontos fixos do mapa logístico}{pontos_fixo_mapa_logístico}
+    Os pontos fixos do mapa logístico \(T_a\) são dados por
+    \begin{equation*}
+        x^\alpha = 0 \quad\text{e}\quad x^\beta = \frac{a-1}{a}.
+    \end{equation*}
+    O ponto fixo \(x^\beta\) pertence a \([0,1]\) só se \(a \geq 1\).
+\end{proposition}
+\begin{proof}
+    A equação de ponto fixo para \(T_a\) é dada por
+    \begin{equation*}
+        x = ax(1 - x) \implies x(a - 1 - ax) = 0,
+    \end{equation*}
+    cujas soluções são justamente \(x^\alpha\) e \(x^\beta\).
+
+    Para \(a \geq 1\), temos
+    \begin{equation*}
+        a - 1 \geq 0 \implies \frac{a - 1}{a} \geq 0
+    \end{equation*}
+\end{proof}

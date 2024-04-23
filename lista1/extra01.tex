@@ -1,0 +1,54 @@
+\section*{Exercício extra 1}
+\begin{definition}{Isometria}{isometria}
+    Sejam \((M_1, d_1)\) e \((M_2, d_2)\) dois espaços métricos. Uma aplicação \(h : M_1 \to M_2\) é dita uma \emph{isometria} se
+    \begin{equation*}
+        d_2(h(x), h(y)) = d_1(x,y)
+    \end{equation*}
+    para todos \(x,y \in M_1\).
+\end{definition}
+
+\begin{proposition}{Isometrias são injetoras}{isometria_injetora}
+    Sob as hipóteses anteriores, uma isometria \(h : M_1 \to M_2\) é injetora.
+\end{proposition}
+\begin{proof}
+    Suponhamos que existam \(x, y \in M_1\) tais que \(h(x) = h(y)\). Assim, \(d_2(h(x), h(y)) = 0\). Como \(h\) é uma isometria, temos \(d_1(x,y) = 0\), logo \(x = y\).
+\end{proof}
+
+\begin{proposition}{}{}
+    Sob as hipóteses anteriores, se \(h : M_1 \to M_2\) é uma isometria bijetora, então \(h^{-1} : M_1 \to M_2\) é uma isometria.
+\end{proposition}
+\begin{proof}
+    Sejam \(\xi, \eta \in M_1\) e definimos \(x = h(\xi)\) e \(y = h(\eta)\). Como \(h\) é uma isometria, vale \(d_1(\xi, \eta) = d_2(x,y)\). Como \(h\) é uma bijeção, temos \(\xi = h^{-1}(x)\) e \(\eta = h^{-1}(y)\). Desse modo, vale \(d_1(h^{-1}(x), h^{-1}(y)) = d_2(x,y)\). Como \(\xi\) e \(\eta\) são arbitrários e \(h\) é uma bijeção, temos que \(h^{-1}\) é uma isometria.
+\end{proof}
+
+\begin{definition}{Espaços métricos isométricos}{isométricos}
+    Dois espaços métricos \((M_1, d_1)\) e \(M_2, d_2\) são \emph{isométricos} se existir uma isometria bijetora \(h : M_1 \to M_2\).
+\end{definition}
+
+\begin{lemma}{Isometria e completeza}{isometria_completeza}
+    Sejam \((M_1, d_1)\) e \((M_2, d_2)\) espaços métricos isométricos. Se \((M_1, d_1)\) é completo, então \((M_2, d_2)\) é completo.
+\end{lemma}
+\begin{proof}
+    Seja \(s : \mathbb{N} \to M_2\) uma sequência de Cauchy em relação à métrica \(d_2\). Como os espaços métricos são isométricos, existe uma isometria bijetora \(h : M_2 \to M_1\) e com isso podemos definir a sequência \(x = h \circ s\).
+
+    Mostremos que \(x\) é de Cauchy em relação à métrica \(d_1\). Como \(s\) é de Cauchy em relação à métrica \(d_2\), dado \(\varepsilon > 0\), existe \(N > 0\) tal que para todo \(n, m > N\)
+    \begin{equation*}
+        d_2(s_n, s_m) < \epsilon.
+    \end{equation*}
+    Desse modo, temos
+    \begin{equation*}
+        d_1(x_n, x_m) = d_1(h(s_n), h(s_m)) = d_2(s_n, s_m) < \epsilon,
+    \end{equation*}
+    isto é, \(x\) é de Cauchy em \((M_1, d_1)\).
+
+    Como \((M_1, d_1)\) é completo, existe \(\tilde{x} \in M_1\) tal que dado \(\epsilon > 0\), existe \(M > 0\) tal que
+    \begin{equation*}
+        n > M \implies d_1(x_n, \tilde{x}) < \epsilon.
+    \end{equation*}
+    Ainda, como \(h\) é bijetora, existe \(\tilde{s} = h^{-1}(\tilde{x}) \in M_2\), de modo que
+    \begin{align*}
+        n > M &\implies d_1(h(s_n), h(\tilde{s})) < \epsilon\\
+              &\implies d_2(s_n, \tilde{s}) < \epsilon.
+    \end{align*}
+    Assim, \(s\) é convergente em \((M_2, d_2)\).
+\end{proof}
