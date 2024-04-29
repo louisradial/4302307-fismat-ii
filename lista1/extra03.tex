@@ -5,25 +5,61 @@
         T_a : \mathbb{R} &\to \mathbb{R}\\
                        x &\mapsto ax(1 - x)
     \end{align*}
-    é chamada de \emph{mapa logístico} ao parâmetro \(a\).
+    é chamada de \emph{mapa logístico} ao parâmetro \(a \in \mathbb{R}\).
 \end{definition}
 
 \begin{proposition}{Pontos fixos do mapa logístico}{pontos_fixo_mapa_logístico}
     Os pontos fixos do mapa logístico \(T_a\) são dados por
     \begin{equation*}
-        x^\alpha = 0 \quad\text{e}\quad x^\beta = \frac{a-1}{a}.
+        x^\alpha = 0 \quad\text{e}\quad x^\beta = \frac{a-1}{a},
     \end{equation*}
-    O ponto fixo \(x^\beta\) pertence a \([0,1]\) só se \(a \geq 1\).
+    onde \(x^\beta\) claramente só está definido para \(a \neq 0\). O ponto fixo \(x^\beta\) pertence a \([0,1]\) se e somente se \(a \geq 1\).
 \end{proposition}
 \begin{proof}
     A equação de ponto fixo para \(T_a\) é dada por
     \begin{equation*}
         x = ax(1 - x) \implies x(a - 1 - ax) = 0,
     \end{equation*}
-    cujas soluções são justamente \(x^\alpha\) e \(x^\beta\).
+    cujas soluções são justamente \(x^\alpha\) e \(x^\beta\), com \(x^\beta\) definido apenas para \(a \neq 0\).
 
-    Para \(a \geq 1\), temos
+    Notemos que \(x^\beta = 1 - \frac1a\), portanto para \(a \geq 1\), temos \(x^\beta \in [0,1) \subset [0,1]\), uma vez que \(x^\beta\) é crescente para \(a > 0\). Para \(x^\beta \in [0,1]\), temos
+    \begin{align*}
+        x^\beta \in [0,1] &\implies 1 - \frac{1}{a} \geq 0 \land 1 - \frac{1}{a} \leq 1\\
+                          &\implies a \notin [0, 1) \land a \geq 1\\
+                          &\implies a \geq 1,
+    \end{align*}
+    como desejado.
+\end{proof}
+
+\begin{proposition}{Restrição do mapa logístico}{restrição_logístico}
+    Seja \(A = [0,1].\) Se \(a \in [0,4]\), a aplicação \(\restrict{T_a}{A} : A \to \mathbb{R}\) é um endomorfismo.
+\end{proposition}
+\begin{proof}
+    Trivialmente, se \(a = 0\) então \(T_a(\mathbb{R}) = \set{0} \subset A\), logo \(\restrict{T_0}{A} : A \to A\). Assim, podemos supor \(a \neq 0\).
+
+    Como \(T_a\) é uma função suave, pelo teorema de Weierstrass esta função admite valor máximo e mínimo no compacto \(A\). Como
     \begin{equation*}
-        a - 1 \geq 0 \implies \frac{a - 1}{a} \geq 0
+        \diff{T_a}{x} = 0 \implies x = \frac12 \in A,
     \end{equation*}
+    segue que os valores de máximo e mínimo de \(T_a\) em \(A\) só podem ocorrer em \(x = 0, x = 1\) e \(x = \frac12\), cujos valores são \(T_a(0) = T_a(1) = 0\) e \(T_a(\frac12) = \frac{a}4\). Desse modo, para \(a > 0\) temos que o máximo global de \(\restrict{T_a}{A}\) ocorre em \(x = \frac12\). Assim, segue que
+    \begin{equation*}
+        a \in (0, 4] \implies 0 \leq T_a(x) \leq \frac{a}{4} \leq 1
+    \end{equation*}
+    para todo \(x \in A\). Concluímos portanto que \(T_a(A) \subset A\) para \(a \in [0,4]\).
+\end{proof}
+
+\begin{proposition}{Pontos fixos da restrição do mapa logístico}{pontos_fixos_restrição}
+    Para \(a \in [0,1],\) a aplicação \(\restrict{T_a}{A} : A \to A\) tem um único ponto fixo, a saber, \(x = 0\). Para \(a \in (1, 4],\) a aplicação apresenta dois pontos fixos distintos, \(x = 0\) e \(x = x^\beta\).
+\end{proposition}
+\begin{proof}
+    Para \(a = 0\), a imagem da aplicação é o conjunto \(\set{0}\), portanto o único ponto fixo é \(x = 0\).
+
+    Consideremos \(a \in (0, 4]\). Pela \cref{prop:pontos_fixo_mapa_logístico}, os pontos fixos de \(T_a : \mathbb{R} \to \mathbb{R}\) são \(x^\alpha = 0\) e \(x^\beta\), com \(x^\beta \in A\iff a \geq 1\). Desse modo, para \(a \in (0, 1),\) o único ponto fixo de \(\restrict{T_a}{A}: A \to A\) é \(x = 0\). Ainda, para \(a = 1, x^\beta = 0\), de modo que para \(a \in [0,1], \) temos o único ponto fixo \(x = 0\) em \(A\). Para \(a \in (1, 4],\) \(x^\beta \neq 0,\) de modo que \(\restrict{T_a}{A}\) apresente dois pontos fixos distintos em \(A\).
+\end{proof}
+
+\begin{proposition}{Condições para a restrição do mapa logístico ser uma contração}{contração_logístico}
+    Para \(a \in [0,1),\) a aplicação \(\restrict{T_a}{A} : A \to A\) é uma contração. Para \(a \in (1, 4]\), a aplicação não é contrativa.
+\end{proposition}
+\begin{proof}
+
 \end{proof}

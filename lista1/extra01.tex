@@ -14,11 +14,11 @@
     Suponhamos que existam \(x, y \in M_1\) tais que \(h(x) = h(y)\). Assim, \(d_2(h(x), h(y)) = 0\). Como \(h\) é uma isometria, temos \(d_1(x,y) = 0\), logo \(x = y\).
 \end{proof}
 
-\begin{proposition}{}{}
+\begin{proposition}{A aplicação inversa de uma isometria bijetora é uma isometria}{isometria_inversa}
     Sob as hipóteses anteriores, se \(h : M_1 \to M_2\) é uma isometria bijetora, então \(h^{-1} : M_1 \to M_2\) é uma isometria.
 \end{proposition}
 \begin{proof}
-    Sejam \(\xi, \eta \in M_1\) e definimos \(x = h(\xi)\) e \(y = h(\eta)\). Como \(h\) é uma isometria, vale \(d_1(\xi, \eta) = d_2(x,y)\). Como \(h\) é uma bijeção, temos \(\xi = h^{-1}(x)\) e \(\eta = h^{-1}(y)\). Desse modo, vale \(d_1(h^{-1}(x), h^{-1}(y)) = d_2(x,y)\). Como \(\xi\) e \(\eta\) são arbitrários e \(h\) é uma bijeção, temos que \(h^{-1}\) é uma isometria.
+    Sejam \(x, y \in M_2\) e sejam \(\xi = h^{-1}(x)\) e \(\eta = h^{-1}(y)\). Como \(h\) é uma isometria, vale \(d_1(\xi, \eta) = d_2(h(\xi),h(\eta)) = d_2(x,y)\). Desse modo, vale \(d_1(h^{-1}(x), h^{-1}(y)) = d_2(x,y)\). Como \(x\) e \(y\) são arbitrários, temos que \(h^{-1}\) é uma isometria.
 \end{proof}
 
 \begin{definition}{Espaços métricos isométricos}{isométricos}
