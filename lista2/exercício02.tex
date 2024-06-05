@@ -1,0 +1,149 @@
+\section*{Exercício 2}
+
+\begin{proposition}{Expansão binomial}{expansão_binomial}
+    Para todos \(x,\alpha \in \mathbb{C} \smallsetminus \mathbb{N}\), com \(\abs{x} < 1\), vale a \emph{expansão binomial}
+    \begin{equation*}
+        (1 + x)^\alpha = \sum_{k = 0}^\infty \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - k + 1)\Gamma(k+1)}x^k.
+    \end{equation*}
+    Ainda, para \(\abs{x} < 1\)
+    \begin{equation*}
+        (1 + x)^n = \sum_{k = 0}^{n} \binom{n}{k}x^k,
+    \end{equation*}
+    para todo \(n \in \mathbb{N}\).
+\end{proposition}
+\begin{proof}
+    Consideremos a equação diferencial ordinária de primeira ordem
+    \begin{equation*}
+        (1 + x)y'(x) - \alpha y(x) = 0.
+    \end{equation*}
+    Tomemos \(\abs{x} < 1\) como a região de analiticidade da equação diferencial e procuremos uma solução do tipo \(y(x) = \sum_{k=0}^\infty c_k x^k\). Substituindo na equação, temos
+    \begin{equation*}
+        (1 + x) \sum_{k=0}^\infty kc_k x^{k-1} - \alpha \sum_{k = 0}^\infty c_kx^k = 0 \implies \sum_{k = 0}^\infty \left[(k+1)c_{k+1} + (k - \alpha)c_k \right] x^k = 0,
+    \end{equation*}
+    portanto os coeficientes da série de potências são dados pela relação de recorrência
+    \begin{equation*}
+        c_{k+1} = \frac{\alpha - k}{k+1}c_k
+    \end{equation*}
+    para \(k \in \mathbb{N}\).
+
+    Limitemo-nos inicialmente ao caso em que \(\alpha = n \in \mathbb{N}\). Pela relação de recorrência os coeficientes \(c_k\) com \(k > n\) são todos nulos, então a solução da equação diferencial é dada pelo polinômio
+    \begin{equation*}
+        y(x) = \sum_{k = 0}^{n} c_k x^k.
+    \end{equation*}
+    Neste caso, os coeficientes do polinômio são dados por
+    \begin{equation*}
+        c_k = \binom{n}{k}c_0,
+    \end{equation*}
+    o que podemos verificar por indução em \(k\). Notemos que
+    \begin{equation*}
+        \binom{n}{0} c_0 = c_0,
+    \end{equation*}
+    isto é, a afirmação segue para \(k = 0\). Suponhamos que seja válida para \(k = m < n\), então da relação de recorrência, temos
+    \begin{equation*}
+        c_{m+1} = \frac{n - m}{m+1}c_m = \frac{n-m}{m+1} \binom{n}{m} c_0 = \frac{n!}{(n - m - 1)! (m+1)!} c_0 = \binom{n}{m+1} c_0,
+    \end{equation*}
+    portanto é válida para \(k = m + 1\). Pelo princípio da indução finita, obtemos a solução geral da equação diferencial
+    \begin{equation*}
+        y(x) = c_0 \sum_{k = 0}^{n} \binom{n}{k}x^k
+    \end{equation*}
+    para \(\alpha = n \in \mathbb{N}\).
+
+    Consideremos agora o caso \(\alpha \notin \mathbb{N}\). Mostremos por indução em \(k\) que
+    \begin{equation*}
+        c_k = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - k + 1) \Gamma(k + 1)}c_0
+    \end{equation*}
+    para todo \(k \in \mathbb{N}\). Notemos que
+    \begin{equation*}
+        \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1) \Gamma(1)}c_0 = c_0
+    \end{equation*}
+    portanto a expressão é válida para \(k = 0\). Suponhamos que vale para \(k = m\), então da relação de recorrência segue que
+    \begin{align*}
+        c_{m+1} = \frac{\alpha - m}{m+1} c_m &\implies c_{m+1} = \frac{\alpha - m}{m+1}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - m + 1) \Gamma(m + 1)} c_0\\
+                                             &\implies c_{m+1} = \frac{\alpha - m}{(\alpha - m) \Gamma(\alpha - m)} \frac{\Gamma(\alpha + 1)}{(m + 1) \Gamma(m+1)} c_0\\
+                                             &\implies c_{m + 1} = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - m)\Gamma(m+2)}c_0,
+    \end{align*}
+    isto é, vale também para \(k = m+1\). Pelo princípio de indução finita, a expressão proposta é válida para todo número natural \(k\). Assim, a solução geral para \(\alpha \notin \mathbb{N}\) é
+    \begin{equation*}
+        y(x) = c_0 \sum_{k=0}^\infty \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - k + 1)\Gamma(k + 1)}x^k.
+    \end{equation*}
+
+    Em resumo, a solução para o problema de valor inicial
+    \begin{equation*}
+        (1 + x)y'(x) - \alpha y(x) = 0,\quad y(0) = 1
+    \end{equation*}
+    é dada por
+    \begin{equation*}
+        y(x) = \begin{cases}
+            \sum_{k=0}^\infty \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - k + 1)\Gamma(k + 1)}x^k, &\text{ se }\alpha \notin \mathbb{N}\\
+            \sum_{k = 0}^{\alpha} \binom{\alpha}{k}x^k, & \text{ se }\alpha \in \mathbb{N},
+        \end{cases}
+    \end{equation*}
+    para \(\abs{x} < 1\).
+
+    Para concluir a demonstração, mostremos que \(f(x) = (1 + x)^\alpha\) é solução do problema de valor inicial. Temos \(f(0) = 1\) e
+    \begin{equation*}
+        f'(x) = \alpha(1 + x)^{\alpha - 1} \implies (1 + x)f'(x) - \alpha f(x) = 0.
+    \end{equation*}
+    Desse modo, pela unicidade de soluções, verificamos a validade da expansão binomial.
+\end{proof}
+
+\begin{proposition}{Expansão binomial e símbolos de Pochhammer}{pochhammer}
+    Para \(x \in \mathbb{C}\) e \(n \in \mathbb{N}\), estão definidos os \emph{símbolos de Pochhammer} por
+    \begin{equation*}
+        (x)_n = \begin{cases}
+            x(x+1)\dots(x+n-1) = \prod_{\ell = 0}^{n - 1} (x + \ell),&\text{se }n \geq 1\\
+            1,&\text{se }n = 0.
+        \end{cases}
+    \end{equation*}
+    Assim, a expansão binomial pode ser escrita como
+    \begin{equation*}
+        (1 + x)^\alpha = \sum_{k = 0}^\infty \frac{(\alpha + 1 - k)_k}{k!}x^k
+    \end{equation*}
+    para \(\abs{x} < 1\).
+\end{proposition}
+\begin{proof}
+    Mostremos que para \(\alpha \in \mathbb{N}\)
+    \begin{equation*}
+        \frac{(\alpha + 1 - k)_k}{k!} = \begin{cases}
+            \binom{\alpha}{k},&\text{se } k \leq \alpha\\
+            0,&\text{se } k > \alpha.
+        \end{cases}
+    \end{equation*}
+    É fácil ver que para \(k = 0\) e para \(\alpha = 0\) a igualdade segue. Pela definição para \(k,\alpha \geq 1\), temos
+    \begin{equation*}
+        (\alpha + 1 - k)_k = \prod_{\ell=0}^{k-1} (\alpha + 1 - k + \ell) = \prod_{\ell=1-k}^{0} (\alpha + \ell),
+    \end{equation*}
+    isto é, \((\alpha + 1 - k)_k\) se anula se \(\alpha \in \set{0, 1, \dots, k-1}\), ou equivalente, se \(\alpha < k\). Para \(\alpha \geq k\), temos
+    \begin{equation*}
+        (\alpha + 1 - k)_k = \alpha (\alpha - 1) \dots (\alpha + 1 - k) = \frac{\alpha!}{(\alpha - k)!},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \frac{(\alpha + 1 - k)_k}{k!} = \binom{\alpha}{k},
+    \end{equation*}
+    como desejado.
+
+    Para \(\alpha \notin \mathbb{N}\), mostremos por indução em \(k\) que
+    \begin{equation*}
+        (\alpha + 1 - k)_k = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - k + 1)}.
+    \end{equation*}
+    Pela definição, o resultado segue para \(k = 0\). Suponhamos que a expressão seja válida para algum \(m \in \mathbb{N}\), então
+    \begin{align*}
+        (\alpha - m)_{m+1} &= \prod_{\ell = 0}^{m} (\alpha - m + \ell)\\
+                           &= (\alpha - m)\prod_{\ell = 0}^{m-1} (\alpha + 1 - m + \ell)\\
+                           &= (\alpha - m)(\alpha + 1 - m)_m\\
+                           &= \frac{(\alpha - m)\Gamma(\alpha + 1)}{\Gamma(\alpha - m + 1)}\\
+                           &= \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - m)},
+    \end{align*}
+    portanto a identidade é satisfeita por \(m + 1\). Pelo princípio de indução, temos
+    \begin{equation*}
+        \frac{(\alpha + 1 - k)_k}{k!} = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha - k + 1)\Gamma(k + 1)}
+    \end{equation*}
+    para todo \(k \in \mathbb{N}\).
+
+    Dessa forma, temos
+    \begin{equation*}
+        (1 + x)^\alpha = \sum_{k=0}^{\infty}\frac{(\alpha + 1 - k)_k}{k!}x^k
+    \end{equation*}
+    para \(\abs{x} < 1\).
+\end{proof}
