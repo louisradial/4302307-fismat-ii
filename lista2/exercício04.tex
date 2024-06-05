@@ -1,0 +1,291 @@
+\section*{Exercício 4}
+\begin{proposition}{Solução não singular da equação de Laguerre}{eqLaguerre}
+    A \emph{equação de Laguerre},
+    \begin{equation*}
+        x\diff[2]yx + (1-x)\diff{y}{x} + \lambda y(x) = 0,
+    \end{equation*}
+    tem uma solução em forma de séries de potências dada por
+    \begin{equation*}
+        y_1(x) = c_0\left[1 + \sum_{k = 1}^\infty (-1)^k \frac{\lambda(\lambda-1)\dots(\lambda - k + 1)}{(k!)^2}x^k\right],
+    \end{equation*}
+    para uma constante \(c_0 \in \mathbb{C}\). No caso particular em que \(\lambda = n \in \mathbb{N}\), temos a solução polinomial
+    \begin{equation*}
+        l_n(x) = c_0 \sum_{k = 0}^n \frac{(-1)^k}{k!}\binom{n}{k}x^k.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Notemos que a equação diferencial pode ser escrita como
+    \begin{equation*}
+        \diff[2]yx + \frac{1-x}{x} \diff{y}{x} + \frac{\lambda}{x} y(x) = 0,
+    \end{equation*}
+    deixando evidente que os coeficientes que acompanham \(\diff{y}{x}\) e \(y(x)\) apresentam um polo simples em \(x = 0\). Deste modo, podemos aplicar o método de Frobenius e buscar uma solução do tipo \(y_1(x) = x^r\sum_{k = 0}^\infty c_k x^k\), com \(c_0 \neq 0\).
+
+    Para uma solução deste tipo, temos
+    \begin{equation*}
+        \diff{y_1}{x} = x^{r-1}\sum_{k = 0}^\infty (r + k)c_k x^k\quad\text{e}\quad \diff[2]{y_1}{x} = x^{r-2} \sum_{k = 0}^\infty (r+k)(r+k-1)c_k x^k.
+    \end{equation*}
+    Substituindo na equação diferencial,
+    \begin{align*}
+        0 &= x^{r-1} \sum_{k = 0}^\infty (r + k)(r + k -1)c_k x^k + x^{r-1}\sum_{k = 0}^\infty (r + k)c_kx^k - x^r \sum_{k = 0}^\infty (r + k)c_k x^k + \lambda x^r\sum_{k = 0}^{\infty}c_kx^k\\
+          &= x^{r-1} \sum_{k = 0}^\infty (r+k)^2c_k x^k + x^{r-1}\sum_{k = 0}^\infty (\lambda - r - k) c_kx^{k+1}\\
+          &= x^{r-1} \sum_{k = 0}^\infty (r + k)^2 c_k x^k + x^{r-1} \sum_{k = 1}^\infty (\lambda -r - k + 1)c_{k-1}x^k\\
+          &= x^{r-1} \left[r^2c_0 + \sum_{k = 1}^\infty \left[(r+k)^2c_k + (\lambda - r - k + 1)c_{k-1}\right]x^k\right],
+    \end{align*}
+    portanto como \(c_0 \neq 0\), devemos ter \(r = 0\). Dessa forma, obtemos a relação de recorrência
+    \begin{equation*}
+        c_{k+1} = -\frac{\lambda - k}{(k+1)^2}c_k,
+    \end{equation*}
+    para \(k \in \mathbb{N}\).
+
+    Mostremos por indução em \(k\) que
+    \begin{equation*}
+        c_k = (-1)^k \frac{\lambda (\lambda - 1) \dots (\lambda - k + 1)}{(k!)^2}c_0
+    \end{equation*}
+    para \(k \geq 1\). Para \(k = 1\) temos
+    \begin{equation*}
+        -\frac{\lambda}{(1!)^2}c_0 = c_1,
+    \end{equation*}
+    portanto a expressão é válida neste caso. Suponhamos que a igualdade siga para algum \(m \in \mathbb{N}\), então da relação de recorrência temos
+    \begin{align*}
+        c_{m+1} &= -\frac{\lambda - m}{(m+1)^2}c_m \\&= - (-1)^m\frac{\lambda(\lambda -1)\dots(\lambda - m +1)(\lambda - m)}{(m+1)^2 (m!)^2}c_0 \\&= (-1)^{m+1}\frac{\lambda (\lambda - 1)\dots (\lambda - m)}{[(m+1)!]^2}c_0,
+    \end{align*}
+    isto é, a expressão é satisfeita para \(m + 1\). Pelo princípio da indução finita, a igualdade segue para todo \(k \geq 1\). Assim, mostramos que a equação de Laguerre admite uma solução do tipo
+    \begin{equation*}
+        y_1(x) = c_0 \left[1 + \sum_{k = 1}^\infty (-1)^k\frac{\lambda (\lambda -1)\dots (\lambda - k + 1)}{(k!)^2}x^k\right].
+    \end{equation*}
+
+    No caso em que \(\lambda = n \in \mathbb{N}\), vemos da relação de recorrência que \(c_{n+1} = 0\), portanto todo coeficiente subsequente da série se anula. Dessa forma, temos a solução polinomial
+    \begin{align*}
+        l_n(x) &= c_0 \left[1 + \sum_{k = 1}^n (-1)^k\frac{n(n-1)\dots (n- k + 1)}{(k!)^2}x^k\right]\\
+               &= c_0  \left[1 + \sum_{k = 1}^n (-1)^k\frac{n!}{(n-k)!(k!)^2}x^k\right]\\
+               &= c_0  \sum_{k = 0}^n \frac{(-1)^k}{k!}\binom{n}{k}x^k
+    \end{align*}
+    da equação de Laguerre.
+\end{proof}
+
+\begin{definition}{Polinômios de Laguerre}{laguerre}
+    Os \emph{polinomômios de Laguerre} \(L_n(x)\) são definidos por
+    \begin{equation*}
+        L_n(x) = \sum_{k = 0}^n (-1)^k \frac{n!}{k!} \binom{n}{k} x^k,
+    \end{equation*}
+    portanto são soluções das equações de Laguerre,
+    \begin{equation*}
+        x \diff[2]yx + (1-x)\diff{y}{x} + ny(x) = 0
+    \end{equation*}
+    com \(n \in \mathbb{N}\), que não apresentam singularidade em \(x = 0\).
+\end{definition}
+
+\begin{lemma}{Regra de Pascal}{pascal}
+   Para \(m, \ell \in \mathbb{N}\) com \(m \geq \ell \geq 1\), vale
+   \begin{equation*}
+       \binom{m}{\ell} + \binom{m}{\ell - 1} = \binom{m + 1}{\ell}.
+   \end{equation*}
+\end{lemma}
+\begin{proof}
+    Computemos diretamente a soma dos coeficientes binomiais,
+    \begin{align*}
+        \binom{m}{\ell} + \binom{m}{\ell - 1} &= \frac{m!}{(m - \ell)!\ell!} + \frac{m!}{(m - \ell + 1)!(\ell - 1)!}\\
+                                              &= \frac{m!}{(m - \ell)! (\ell -1)!}\left[\frac{1}{\ell} + \frac{1}{m - \ell + 1}\right]\\
+                                              &= \frac{(m+1)m!}{(m - \ell)! (\ell-1)!\ell (m+1-\ell)}\\
+                                              &= \frac{(m+1)!}{(m+1-\ell)!\ell!}\\
+                                              &= \binom{m+1}{\ell},
+    \end{align*}
+    como desejado.
+\end{proof}
+
+\begin{lemma}{Regra de Leibniz}{leibniz}
+    Para duas funções \(f, g\) diferenciáveis pelo menos \(n\) vezes, então
+    \begin{equation*}
+        \diff*[k]{(fg)}{x} = \sum_{\ell = 0}^{k} \binom{k}{\ell} \diff[k-\ell]{f}{x}\diff[\ell]{g}{x}
+    \end{equation*}
+    para todo \(k \leq n\).
+\end{lemma}
+\begin{proof}
+    Para \(k = 0\) a igualdade é trivialmente satisfeita e para \(k = 1\) temos a regra de Leibniz usual
+    \begin{equation*}
+        \diff*{f(x)g(x)}{x} = \diff{f}{x}g + f\diff{g}{x}.
+    \end{equation*}
+    Suponhamos que a igualdade é satisfeita para algum \(1 \leq m < n\), então, utilizando o \cref{lem:pascal},
+    \begin{align*}
+        \diff*[m + 1]{(fg)}{x} &= \diff*{\left[\diff*[m]{(fg)}{x}\right]}{x} = \diff*{\left[\sum_{\ell = 0}^{m} \binom{m}{\ell}\diff[m-\ell]{f}{x}\diff[\ell]{g}{x}\right]}{x}\\
+                               &= \sum_{\ell = 0}^m \binom{m}{\ell} \left[\diff[m-\ell+1]{f}{x}\diff[\ell]{g}{x} + \diff[m-\ell]{f}{x}\diff[\ell+1]{g}{x}\right]\\
+                               &= \sum_{\ell = 0}^m \binom{m}{\ell} \diff[m-\ell+1]{f}{x}\diff[\ell]{g}{x} + \sum_{\ell=1}^{m+1} \binom{m}{\ell-1}\diff[m-\ell+1]{f}{x}\diff[\ell]{g}{x}\\
+                               &= \diff[m+1]{f}{x} + \sum_{\ell = 1}^{m}\left[\binom{m}{\ell} + \binom{m}{\ell - 1}\right] \diff[m-\ell+1]{f}{x}\diff[\ell]{g}{x} + \diff[m+1]{g}{x}\\
+                               &= \sum_{\ell = 0}^{m+1} \binom{m+1}{\ell}\diff[m-\ell+1]{f}{x}\diff[\ell]{g}{x},
+    \end{align*}
+    isto é, a igualdade é satisfeita para \(m + 1 \leq n\). Pelo princípio de indução finita, a igualdade é satisfeita para todo \(k \leq n\), como proposto.
+\end{proof}
+
+\begin{lemma}{\(\ell\)-ésima derivada de um monômio}{derivada}
+    Para \(k, \ell \in \mathbb{N}\), temos
+    \begin{equation*}
+        \diff*[\ell]{x^k}{x} = \begin{cases}
+            \frac{k!}{(k - \ell)!} x^{k - \ell}, &\text{se }k \geq \ell\\
+            0, &\text{se }k < \ell.
+        \end{cases}
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Mostremos por indução em \(k\) que \(\diff[k+1]{x^{k}}{x}= 0\). Claramente a igualdade é válida para \(k = 0\), pois \(\diff*{1}{x} = 0\). Suponhamos que a igualdade é satisfeita para algum \(m \in \mathbb{N}\), então
+    \begin{equation*}
+        \diff*[m+2]{x^{m+1}}{x} = \diff*[m+1]{\left[\diff*{x^{m+1}}{x}\right]}{x} = (m+1)\diff*[m+1]{x^m}{x} = 0,
+    \end{equation*}
+    isto é, a expressão também vale para \(m + 1\). Pelo princípio de indução finita, segue que \(\diff[k+1]{x^{k}}{x}= 0\) para todo \(k \in \mathbb{N}\). Assim, mostramos que para \(\ell > k\), vale \(\diff*[\ell]{x^k}{x} = 0\).
+
+    Consideremos agora o caso em que \(\ell \leq k\). Mostremos por indução em \(\ell\) que \(\diff*[\ell]{x^k}{x} = \frac{k!}{(k-\ell)!}x^{k - \ell}\). Trivialmente para \(\ell = 0\) temos \(\frac{k!}{k!} x^k = x^k\). Suponhamos que a igualdade é satisfeita para algum \(n < k\), então
+    \begin{equation*}
+        \diff*[n+1]{x^k}{x} = \diff*{\left[\diff*[n]{x^k}{x}\right]}{x} = \frac{k!}{(k - n)!} \diff*{x^{k-n}}{x} = \frac{k!}{(k-n-1)!}x^{k-n-1},
+    \end{equation*}
+    isto é, a expressão é válida para \(n + 1\). Pelo princípio de indução finita, a igualdade é satisfeita para todo \(\ell \leq k\).
+\end{proof}
+\begin{proposition}{Representação de Rodrigues}{rodrigues}
+    Os polinômios de Laguerre podem ser dados por
+    \begin{equation*}
+        L_n(x) = e^x \diff*[n]{\left(x^ne^{-x}\right)}{x},
+    \end{equation*}
+    chamada de representação de Rodrigues para os polinômios de Laguerre.
+\end{proposition}
+\begin{proof}
+    Notemos que, para todo \(\ell \in \mathbb{N}\), temos
+    \begin{equation*}
+        \diff*[\ell]{\left(e^{-x}\right)}{x} = (-1)^{\ell}e^{-x}.
+    \end{equation*}
+    Pelos \cref{lem:leibniz,lem:derivada}, temos
+    \begin{equation*}
+        \diff*[n]{\left(x^ne^{-x}\right)}{x} = \sum_{\ell = 0}^n \binom{n}{\ell} \diff*[n-\ell]{\left(x^n\right)}{x} \diff*[\ell]{\left(e^{-x}\right)}{x} = e^{-x}\sum_{\ell = 0}^n (-1)^\ell\binom{n}{\ell} \frac{n!}{\ell!}x^\ell.
+    \end{equation*}
+    Assim, obtemos
+    \begin{equation*}
+        e^x \diff*[n]{\left(x^ne^{-x}\right)}{x} = \sum_{\ell = 0}^n (-1)^\ell \binom{n}{\ell}\frac{n!}{\ell!} x^\ell = L_n(x),
+    \end{equation*}
+    como desejado.
+\end{proof}
+
+\begin{lemma}{Integração por partes}{integração_por_partes}
+    Seja \(k \geq 1\) um número natural, então
+    \begin{equation*}
+        \int_{a}^{b} \dli{x} \diff[k]{f}{x}g(x) = \sum_{\ell = 0}^{k-1} (-1)^{\ell} \left.\diff[k-\ell-1]{f}{x}\diff[\ell]{g}{x}\right\rvert_a^b + (-1)^k \int_{a}^{b}\dli{x} f(x)\diff[k]{g}{x}.
+    \end{equation*}
+    para quaisquer funções suaves \(f, g\). Para um dado \(k\), se para todo \(0 \leq \ell \leq k - 1\)
+    \begin{equation*}
+        \left.\diff[k-\ell-1]{f}{x}\diff[\ell]{g}{x}\right\rvert_a^b = 0,
+    \end{equation*}
+    então
+    \begin{equation*}
+        \int_{a}^{b} \dli{x} \diff[k]{f}{x}g(x) = (-1)^k \int_{a}^{b}\dli{x} f(x)\diff[k]{g}{x}.
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Para \(k = 1\), temos a familiar relação de integração por partes,
+    \begin{equation*}
+        \int_{a}^{b} \dli{x} \diff{f}{x}g(x) = \left.f(x)g(x)\right\rvert_{a}^{b} - \int_{a}^{b} \dli{x}f(x)\diff{g}{x}
+    \end{equation*}
+    portanto a expressão é válida. Suponhamos que a identidade seja satisfeita para algum \(j < n\), então
+    \begin{align*}
+        \int_{a}^{b} \dli{x} \diff[j+1]{f}{x}g(x) &= \left.\diff[j]{f}{x}g(x)\right\rvert_{a}^{b} - \int_{a}^{b}\dli{x} \diff[j]{f}{x}\diff{g}{x}\\
+                                                  &= \left.\diff[j]{f}{x}g(x)\right\rvert_{a}^{b} -\left[\sum_{\ell = 0}^{j-1} (-1)^{\ell} \left.\diff[j-\ell-1]{f}{x}\diff[\ell+1]{g}{x}\right\rvert_a^b + (-1)^{j} \int_{a}^{b}\dli{x} f(x)\diff[j+1]{g}{x}\right]\\
+                                                  &= \left.\diff[j]{f}{x}g(x)\right\rvert_{a}^{b} +\sum_{\ell = 1}^{j} (-1)^{\ell} \left.\diff[j-\ell]{f}{x}\diff[\ell]{g}{x}\right\rvert_a^b + (-1)^{j+1} \int_{a}^{b}\dli{x} f(x)\diff[j+1]{g}{x}\\
+                                                  &= \sum_{\ell = 0}^{j} (-1)^{\ell} \left.\diff[j-\ell]{f}{x}\diff[\ell]{g}{x}\right\rvert_a^b + (-1)^{j+1} \int_{a}^{b}\dli{x} f(x)\diff[j+1]{g}{x}
+    \end{align*}
+    isto é, a expressão é satisfeita para \(j + 1\). Pelo princípio da indução finita, segue que a identidade é válida para todo \(1 \leq k \leq n\).
+
+    Para um dado \(k\), se
+    \begin{equation*}
+        \sum_{\ell = 0}^{k-1} (-1)^{\ell} \left.\diff[k-\ell-1]{f}{x}\diff[\ell]{g}{x}\right\rvert_a^b = 0,
+    \end{equation*}
+    então
+    \begin{equation*}
+        \int_{a}^{b} \dli{x} \diff[k]{f}{x}g(x) = (-1)^k \int_{a}^{b}\dli{x} f(x)\diff[k]{g}{x}.
+    \end{equation*}
+    Uma das maneiras que satisfaz essa condição é simplesmente
+    \begin{equation*}
+        \left.\diff[k-\ell-1]{f}{x}\diff[\ell]{g}{x}\right\rvert_a^b = 0,
+    \end{equation*}
+    para todo \(0 \leq \ell \leq k - 1\).
+\end{proof}
+
+\begin{proposition}{Relações de ortogonalidade dos polinômios de Laguerre}{ortogonalidade}
+    Para \(m,n \in \mathbb{N}\), segue que
+    \begin{equation*}
+        \int_{0}^\infty e^{-x} L_m(x) L_n(x) = (n!)^2 \delta_{nm},
+    \end{equation*}
+    onde \(\delta_{nm}\) é o delta de Kronecker.
+\end{proposition}
+\begin{proof}
+    Mostremos que para \(k \in \mathbb{N}\) com \(k < n\) que
+    \begin{equation*}
+        \int_{0}^\infty \dli{x} e^{-x} x^k L_n(x) = 0.
+    \end{equation*}
+    Pela \cref{prop:rodrigues}, temos
+    \begin{equation*}
+        \int_{0}^\infty \dli{x} e^{-x} x^k L_n(x) = \int_{0}^\infty \dli{x} x^k \diff*[n]{\left(x^n e^{-x}\right)}{x}.
+    \end{equation*}
+    Pelos \cref{lem:leibniz,lem:derivada}, temos
+    \begin{equation*}
+        \diff*[s]{\left(x^ne^{-x}\right)}{x} = \sum_{\ell = 0}^{s} \binom{s}{\ell} \diff*[s-\ell]{(x^n)}{x}\diff*[\ell]{(e^{-x})}{x} = e^{-x}\sum_{\ell = 0}^{s} (-1)^{\ell}\binom{s}{\ell} \frac{n!}{(n-s+\ell)!} x^{n - s + \ell}
+    \end{equation*}
+    para todos \(s, n \in \mathbb{N}\) com \(s \leq n\). Com isso, vemos que
+    \begin{equation*}
+    \lim_{x \to +\infty} x^r\diff*[s]{\left(x^ne^{-x}\right)}{x} = 0\quad\text{e}\quad \left.x^r\diff*[s]{\left(x^ne^{-x}\right)}{x}\right\rvert_{x=0} = 0
+    \end{equation*}
+    para todo \(r \in \mathbb{N}\) e \(s < n\). Tomando \(r = k - \ell\) e \(s = n - \ell - 1\), mostramos que
+    \begin{equation*}
+        \left.\diff*[\ell]{\left(x^k\right)}{x} \diff*[k - \ell - 1]{\left[\diff*[n - k]{\left(x^n e^{-x}\right)}{x}\right]}{x}\right\rvert_{0}^{\infty} = 0
+    \end{equation*}
+    para todo \(0 \leq \ell < k \leq n\). Assim, pelo \cref{lem:integração_por_partes}, temos
+    \begin{equation*}
+        \int_{0}^\infty \dli{x} e^{-x} x^k L_n(x) = (-1)^k k! \int_{0}^\infty \dli{x} \diff*[n - k]{\left(x^n e^{-x}\right)}{x} = \left.(-1)^k k! \diff*[n-k-1]{\left(x^ne^{-x}\right)}{x}\right\rvert_0^\infty = 0,
+    \end{equation*}
+    como mostrado anteriormente, tomando \(s = n - k - 1\) e \(r = 0\).
+
+    Consideremos \(m, n \in \mathbb{N}\). Sem perdas de generalidade, podemos assumir que \(n \geq m\). Desse modo, pela linearidade da integral,
+    \begin{align*}
+        \int_{0}^\infty \dli{x} e^{-x} L_m(x)L_n(x) &= \sum_{k = 0}^{m} (-1)^k \frac{m!}{k!}\binom{m}{k}\int_0^\infty \dli{x} e^{-x} x^k L_n(x)\\
+                                                    &= \delta_{nm} (-1)^n \int_{0}^\infty \dli{x} e^{-x} x^n L_n(x)\\
+                                                    &= \delta_{nm} (-1)^n \int_0^\infty \dli{x} x^n \diff*[n]{\left(x^n e^{-x}\right)}{x}\\
+                                                    &= \delta_{nm} (-1)^{2n} n! \int_0^\infty \dli{x} e^{-x} x^n\\
+                                                    &= \delta_{nm} n! \Gamma(n+1) = \delta_{nm} (n!)^2,
+    \end{align*}
+    como queríamos demonstrar.
+\end{proof}
+
+\begin{proposition}{Polinômios de Laguerre associados}{laguerre_associados}
+    Os \emph{polinômios de Laguerre associados},
+    \begin{equation*}
+        L_n^m(x) = \diff*[m]{L_n(x)}{x} = \diff*[m]{\left[e^x\diff*[n]{\left(x^ne^{-x}\right)}{x}\right]}{x},
+    \end{equation*}
+    são soluções da \emph{equação de Laguerre associada},
+    \begin{equation*}
+        x\diff[2]fx + (m+1 - x)\diff{f}{x} + (n-m) f(x) = 0,
+    \end{equation*}
+    e são dados por
+    \begin{equation*}
+        L_n^m(x) = (-1)^m \sum_{k = 0}^{n-m} (-1)^k \frac{n!}{k!} \binom{n}{m+k}x^k.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Utilizando o \cref{lem:leibniz}, derivemos a equação de Laguerre \(m\) vezes. Temos os resultados parciais
+    \begin{equation*}
+        \diff*[m]{\left(x\diff[2]yx\right)}{x} = \sum_{\ell = 0}^m \binom{m}{\ell} \diff[m - \ell + 2]{y}{x} \diff[\ell]{x}{x} = \sum_{\ell = 0}^1 \binom{m}{\ell} \diff[m-\ell+2]{y}{x}x^{1-\ell} = \diff[m+2]{y}{x}x + m\diff[m+1]{y}{x},
+    \end{equation*}
+    e
+    \begin{equation*}
+        \diff*[m]{\left[(1-x)\diff{y}{x}\right]}{x} = \sum_{\ell = 0}^{m}\binom{m}{\ell} \diff[m-\ell+1]{y}{x} \diff*[\ell]{(1-x)}{x} = \diff[m+1]{y}{x}(1-x) - m\diff[m]{y}{x}.
+    \end{equation*}
+    Ao substituir na equação, temos
+    \begin{equation*}
+        x \diff*[2]{\left(\diff[m]yx\right)}{x} + (m + 1 - x) \diff*{\left(\diff[m]{y}{x}\right)}{x} + (n - m)\diff[m]{y}{x} = 0.
+    \end{equation*}
+    Tomando \(f(x) = \diff[m]yx\), obtemos a equação de Laguerre associada, cujas soluções sem singularidade em \(x = 0\) são a \(m\)-ésima derivada dos polinômios de Laguerre, isto é, os polinômios de Laguerre associados,
+    \begin{equation*}
+        L_n^m(x) = \diff[m]{L_n}{x}.
+    \end{equation*}
+
+    Pela \cref{def:laguerre}, temos
+    \begin{align*}
+        L_n^m(x) &= \sum_{\ell = 0}^{n} (-1)^\ell \frac{n!}{\ell!} \binom{n}{\ell} \diff*[m]{(x^\ell)}{x}\\
+                 &= \sum_{\ell = m}^{n} (-1)^\ell \frac{n!}{\ell!} \binom{n}{\ell} \frac{\ell!}{(\ell - m)!}x^{\ell - m}\\
+                 &= \sum_{k = 0}^{n-m} (-1)^{k + m} \frac{n!}{k!} \binom{n}{m+k} x^{k},
+    \end{align*}
+    como desejado.
+\end{proof}
