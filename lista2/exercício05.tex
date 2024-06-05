@@ -1,0 +1,100 @@
+\section*{Exercício 5}
+\begin{proposition}{Operador de derivação no espaço de polinômios complexos}{derivaçãoPn}
+    Seja \(\mathcal{P}_n\) o espaço vetorial complexo \((n + 1)\)-dimensional de todos os polinômios complexos de grau menor ou igual a \(n\). O operador diferencial nilpotente \(D = \diff*{}{x}\) pode ser representado matricialmente por
+    \begin{equation*}
+        D \doteq \begin{bmatrix}
+            0 & 1 & 0 & \dots & 0\\
+            0 & 0 & 1 & \dots & 0\\
+            \vdots & \vdots & \vdots & \ddots & \vdots\\
+            0 & 0 & 0 & \dots & 1\\
+            0 & 0 & 0 & \dots & 0
+        \end{bmatrix}
+    \end{equation*}
+    na base \(\set{e_0, e_1, \dots, e_n}\), onde \(e_k = \frac{x^k}{k!}\).
+\end{proposition}
+\begin{proof}
+    Na base dada, temos \(D e_0 = \diff*{1}{x} = 0\) e para \(1 \leq k \leq n\)
+    \begin{equation*}
+        D e_k = \diff*{\frac{x^k}{k!}}{x} = \frac{x^{k-1}}{(k-1)!} = e_{k-1},
+    \end{equation*}
+    o que confirma a representação matricial afirmada.
+
+    Pelo \cref{lem:derivada}, temos \(D^{n+1}e_k = 0\) para todo \(0 \leq k \leq n\). Dessa forma, para um polinômio \(p \in \mathcal{P}_n\) com \(p = \sum_{k = 0}^{n} p_k e_k\), temos
+    \begin{equation*}
+        D^{n+1} p = \sum_{k=0}^n p_k D^{n+1} e_k = 0.
+    \end{equation*}
+    Assim, segue que o operador \(D^{n+1}\) é o operador nulo, isto é, \(D\) é nilpotente.
+\end{proof}
+\begin{lemma}{Binômio de Newton}{binomio_newton}
+    Para \(a,b \in \mathbb{C}\), segue que
+    \begin{equation*}
+        (a + b)^k = \sum_{\ell = 0}^{k} \binom{k}{\ell} a^{k - \ell}b^{\ell}
+    \end{equation*}
+    para todo \(k \in \mathbb{N}\).
+\end{lemma}
+\begin{proof}
+    A identidade segue trivialmente para \(k = 0\) e para \(k = 1\) temos
+    \begin{equation*}
+        \binom{1}{0}a + \binom{1}{1}b = a + b,
+    \end{equation*}
+    portanto a igualdade é satisfeita. Suponhamos que a expressão seja válida para algum \(m\in \mathbb{N}\), então
+    \begin{align*}
+        (a + b)^{m+1} &= (a + b) (a+b)^m = (a + b)\sum_{\ell = 0}^{m}\binom{m}{\ell} a^{m-\ell}b^{\ell}\\
+                      &= \sum_{\ell = 0}^m \binom{m}{\ell} a^{m+1-\ell}b^{\ell} + \sum_{\ell = 1}^{m+1} \binom{m}{\ell-1} a^{m+1-\ell}b^{\ell}\\
+                      &= a^{m+1} + b^{m+1} + \sum_{\ell=1}^{m} \left[\binom{m}{\ell} + \binom{m}{\ell-1}\right]a^{m+1-\ell}b^{\ell}\\
+                      &= \sum_{\ell=0}^m\binom{m+1}{\ell} a^{m+1-\ell}b^{\ell},
+    \end{align*}
+    pelo \cref{lem:pascal}, isto é, \(m+1\) também satisfaz a identidade. Dessa forma, pelo princípio da indução finita, segue que é válida para todo \(k \in \mathbb{N}\).
+\end{proof}
+
+\begin{proposition}{Exponencial do operador de derivação}{exponencial}
+    Para \(t \in \mathbb{C}\), temos
+    \begin{equation*}
+        \exp{(tD)} \doteq \begin{bmatrix}
+            1 & t & \frac{t^2}{2} & \dots & \frac{t^{n-1}}{(n-1)!} & \frac{t^n}{n!}\\
+            0 & 1 & t & \dots & \frac{t^{n-2}}{(n-2)!} & \frac{t^{n-1}}{(n-1)!}\\
+            0 & 0 & 1 & \dots & \frac{t^{n-3}}{(n-3)!} & \frac{t^{n-2}}{(n-2)!}\\
+            \vdots & \vdots & \vdots & \ddots& \vdots & \vdots\\
+            0 & 0 & 0 & \dots & 1 & t\\
+            0 & 0 & 0 & \dots & 0 & 1
+        \end{bmatrix}
+    \end{equation*}
+    como a representação matricial do operador \(\exp(tD)\) na base \(\set{e_0, e_1, \dots, e_n}\) de \(\mathcal{P}_n\). Este operador satisfaz
+    \begin{equation*}
+        \left[\exp{(tD)}p\right](x) = p(x+t),
+    \end{equation*}
+    para todo \(p \in \mathcal{P}_n\) e \(x \in \mathbb{C}\).
+\end{proposition}
+\begin{proof}
+    Pelo resultado obtido no \cref{lem:derivada}, segue que
+    \begin{equation*}
+        D^{\ell} e_k = \begin{cases}
+            e_{k - \ell}, & \text{se }k\geq\ell\\
+            0,&\text{se }k<\ell
+        \end{cases}
+    \end{equation*}
+    para todo \(0 \leq k \leq n\) e \(\ell \in \mathbb{N}\).
+
+    Como \(D\) é nilpotente com \(D^{n+1} = 0\), segue que
+    \begin{equation*}
+        \exp{(tD)} = \id{\mathcal{P}_n} + \sum_{\ell = 1}^{n}\frac{t^\ell}{\ell!}D^\ell
+    \end{equation*}
+    para todo \(t \in \mathbb{C}\). Assim, para um vetor \(e_k\) da base, temos
+    \begin{align*}
+        \exp{(tD)}e_k &= e_k + \sum_{\ell = 1}^n \frac{t^\ell}{\ell!}D^\ell e_k = e_k + \sum_{\ell = 1}^k \frac{t^\ell}{\ell!}e_{k-\ell}\\
+                      &= e_k + t e_{k-1} + \frac{t^2}{2} e_{k-2} + \dots + \frac{t^k}{k!}e_0,
+    \end{align*}
+    o que confirma a representação matricial apresentada.
+
+    Notemos que para \(x \in \mathbb{C}\), temos
+    \begin{align*}
+        \left[\exp{(tD)}e_k\right](x) &= \sum_{\ell=0}^k\frac{t^\ell}{\ell!}e_{k-\ell}(x) = \sum_{\ell=0}^k\frac{t^{\ell}}{\ell!}\frac{x^{k-\ell}}{(k-\ell)!}\\
+                                      &= \frac{1}{k!}\sum_{\ell=0}^k \binom{k}{l} t^\ell x^{k - \ell}\\
+                                      &= \frac{(t+x)^k}{k!} = e_k(t+x),
+    \end{align*}
+    pelo \cref{lem:binomio_newton}, para todo \(0 \leq k \leq n\). Dessa forma, para um polinômio \(p \in \mathcal{P}_n\) qualquer, com \(p = \sum_{k = 0}^n p_k e_k\), temos
+    \begin{equation*}
+        \left[\exp{(tD)}p\right](x) = \sum_{k = 0}^n p_k \left[\exp{(tD)}e_k\right](x) = \sum_{k = 0}^n p_k e_k(t+x) = p(t + x),
+    \end{equation*}
+    como desejado.
+\end{proof}
