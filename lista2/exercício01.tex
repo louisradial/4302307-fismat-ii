@@ -1,1 +1,166 @@
 \section*{Exercício 1}
+\begin{proposition}{Solução geral para o oscilador harmônico amortecido}{exercício01a}
+    Sejam \(a, b, c\) constantes reais com \(a \neq 0\) e \(b^2 \neq 4ac\). A equação diferencial
+    \begin{equation*}
+        a \ddot{x}(t) + b \dot{x}(t) + cx(t) = 0
+    \end{equation*}
+    admite uma solução do tipo \(x(t) = e^{\lambda t}\), com \(\lambda \in \mathbb{C}\) satisfazendo
+    \begin{equation*}
+        a\lambda^2 + b \lambda + c = 0,
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \lambda = \lambda_\pm = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+    \end{equation*}
+    A solução geral da equação diferencial é dada por
+    \begin{equation*}
+        x(t) = \alpha e^{\lambda_+t} + \beta e^{\lambda_-t},
+    \end{equation*}
+    com \(\alpha, \beta \in \mathbb{C}\) constantes.
+\end{proposition}
+\begin{proof}
+    Mostremos que \(x(t) = e^{\lambda t}\) é solução da equação diferencial. Temos
+    \begin{align*}
+        \dot{x}(t) &= \lambda e^{\lambda t}& \ddot{x}(t) &= \lambda^2 e^{\lambda t}\\ &= \lambda x(t) & &= \lambda^2 x(t),
+    \end{align*}
+    portanto ao substituir no lado esquerdo da equação diferencial temos
+    \begin{align*}
+        a \ddot{x}(t) + b\dot{x}(t) + cx(t) &= a \lambda^2 x(t) + b \lambda x(t) + c x(t)\\
+                                            &= \left(a \lambda^2 + b \lambda + c\right)x(t).
+    \end{align*}
+    Como \(x(t) > 0\) para todo \(t \in \mathbb{R}\), segue que o ansatz é solução se e somente se
+    \begin{equation*}
+        a \lambda^2 + b \lambda + c = 0,
+    \end{equation*}
+    como desejado.
+
+    Como a equação diferencial ordinária é linear e de segunda ordem, então a solução geral é dada por
+    \begin{equation*}
+        x(t) = \alpha x_1(t) + \beta x_2(t),
+    \end{equation*}
+    com \(\set{x_1, x_2}\) um conjunto linearmente independente de soluções da equação diferencial. Notemos que \(\set{e^{\lambda_+ t}, e^{\lambda_- t}}\) é linearmente independente:
+    \begin{equation*}
+        \mu e^{\lambda_+ t} + \nu e^{\lambda_- t} = 0 \implies \mu = \nu = 0,
+    \end{equation*}
+    portanto a solução geral da equação diferencial estudada é
+    \begin{equation*}
+        x(t) = \alpha e^{\lambda_+ t} + \beta e^{\lambda_- t},
+    \end{equation*}
+    como queríamos mostrar.
+\end{proof}
+
+\begin{proposition}{Solução para o oscilador harmônico amortecido com condições iniciais}{exercício01c}
+    Sejam \(a,b,c\) como antes. O problema de valor inicial
+    \begin{equation*}
+        a \ddot{x}(t) + b \dot{x}(t) + cx(t) = 0
+    \end{equation*}
+    com \(x(0) = x_0\) e \(\dot{x}(0) = v_0\) tem como solução
+    \begin{equation*}
+        x(t) = \left[\frac{v_0 - \lambda_- x_0}{\lambda_+ - \lambda_-}\right]e^{\lambda_+ t} + \left[\frac{\lambda_+ x_0 - v_0}{\lambda_+ - \lambda_-}\right]e^{\lambda_- t}.
+    \end{equation*}
+    Ainda, definindo \(\gamma = \frac{b}{2a}\) e \(\sigma = \frac{\sqrt{b^2 - 4ac}}{2a}\), temos
+    \begin{equation*}
+        x(t) = e^{-\gamma t} \left[x_0\cosh(\sigma t) + \left(\frac{\gamma x_0 + v_0}{\sigma}\right)\sinh(\sigma t)\right].
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Da \cref{prop:exercício01a}, temos
+    \begin{equation*}
+        x(t) = \alpha e^{\lambda_+ t} + \beta e^{\lambda_- t} \implies x(0) = \alpha + \beta
+    \end{equation*}
+    e
+    \begin{equation*}
+        \dot{x}(t) = \alpha \lambda_+ e^{\lambda_+ t} + \beta \lambda_- e^{\lambda_- t} \implies \dot{x}(0) = \lambda_+\alpha + \lambda_-\beta.
+    \end{equation*}
+    Dessa forma, das condições iniciais, obtemos o sistema de equações lineares
+    \begin{equation*}
+       \begin{pmatrix}
+           1 & 1\\\lambda_+&\lambda_-
+       \end{pmatrix}
+       \begin{bmatrix}
+           \alpha \\ \beta
+       \end{bmatrix}
+       =
+       \begin{bmatrix}
+           x_0\\
+           v_0
+       \end{bmatrix},
+    \end{equation*}
+    cujas soluções são
+    \begin{equation*}
+        \alpha = \frac{v_0 - x_0 \lambda_-}{\lambda_+ - \lambda_-}\quad\text{e}\quad \beta = \frac{\lambda_+ x_0 - v_0}{\lambda_+ - \lambda_-}.
+    \end{equation*}
+    Isto é, a solução do problema de valor inicial é
+    \begin{align*}
+        x(t) &= \left[\frac{v_0 - \lambda_- x_0}{\lambda_+ - \lambda_-}\right]e^{\lambda_+ t} + \left[\frac{\lambda_+ x_0 - v_0}{\lambda_+ - \lambda_-}\right]e^{\lambda_- t}\\
+             &= \frac{-\lambda_- e^{\lambda_+ t} + \lambda_+ e^{\lambda_- t}}{\lambda_+ - \lambda_-}x_0 + \frac{e^{\lambda_+ t} - e^{\lambda_-t}}{\lambda_+ - \lambda_-}v_0
+    \end{align*}
+    como desejado.
+
+    Definimos \(\gamma = \frac{b}{2a}\) e \(\sigma = \frac{\sqrt{b^2 - 4ac}}{2a}\), de modo que \(\lambda_\pm = - \gamma \pm \sigma\). Assim, temos
+    \begin{align*}
+        e^{\gamma t}x(t) &= \frac{(\gamma + \sigma)e^{\sigma t} + (-\gamma + \sigma)e^{-\sigma t}}{2\sigma}x_0 + \frac{e^{\sigma t} - e^{\sigma t}}{2\sigma}v_0\\
+                         &= \frac{e^{\sigma t} - e^{-\sigma t}}{2\sigma} \left(\gamma x_0 + v_0\right) + \frac{e^{\sigma t} + e^{-\sigma t}}{2} x_0,
+    \end{align*}
+    isto é, a solução para o problema de valor inicial pode ser dada por
+    \begin{equation*}
+        x(t) = e^{-\gamma t} \left[x_0\cosh(\sigma t) + \left(\frac{\gamma x_0 + v_0}{\sigma}\right)\sinh(\sigma t)\right],
+    \end{equation*}
+    como queríamos demonstrar.
+\end{proof}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.9\linewidth,
+            height=0.3\textheight,
+            xmin=0, xmax=15,
+            ymin=-0.3,ymax=0.8,
+            domain=0:15,
+            samples=500,
+            axis lines=middle,
+            xlabel={\(t\)},
+            ylabel={\(x(t)\)},
+            legend pos=north east,
+            ytick=\empty,
+            xtick=\empty
+        ]
+        \addplot[thick, Mauve] {0.5*(cos(deg(x)) + 0.3*sin(deg(x)))*exp(-0.3*x)};
+            \addlegendentry{\(b^2 - 4ac < 0\)}
+
+                \addplot[thick, Pink] {0.5*(cosh(x) + 1.6*sinh(x))*exp(-1.6*x)};
+            \addlegendentry{\(b^2 - 4ac > 0\)}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Algumas soluções reais para o oscilador harmônico amortecido com velocidade inicial nula.}
+    \label{fig:exercício01}
+\end{figure}
+
+\begin{proposition}{Oscilador harmônico amortecido: caso supercrítico}{exercício01f}
+    Sejam \(a,b,c \in \mathbb{R}\) constantes com \(a \neq 0\) e \(b^2 = 4ac\). A função
+    \begin{equation*}
+        x(t) = \alpha e^{\lambda t} + \beta t e^{\lambda t}
+    \end{equation*}
+    com \(\alpha, \beta \in \mathbb{C}\) e \(\lambda = -\frac{b}{2a}\) é solução da equação diferencial
+    \begin{equation*}
+        a\ddot{x}(t) + b\dot{x}(t) + cx(t) = 0.
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Verifiquemos diretamente computando as derivadas da solução proposta. Temos
+    \begin{align*}
+        \dot{x}(t) &= \alpha \lambda e^{\lambda t} + \beta e^{\lambda t} + \beta \lambda t e^{\lambda t}\\
+                   &= \lambda x(t) + \beta e^{\lambda t},
+    \end{align*}
+    portanto
+    \begin{align*}
+        \ddot{x}(t) &= \lambda \dot{x}(t) + \beta \lambda e^{\lambda t}\\
+                    &= \lambda^2 x(t) + 2 \beta \lambda e^{\lambda t}.
+    \end{align*}
+    Substituindo na equação diferencial, obtemos
+    \begin{equation*}
+        a \ddot{x}(t) + b\dot{x}(t) + cx(t) = \left(a \lambda^2 + b \lambda + c\right)x(t) + (2a \lambda + b)\beta e^{\lambda t} = 0,
+    \end{equation*}
+    visto que \(a \lambda^2 + b \lambda + c = 0\) e \(2a \lambda + b = 0\). Isto é, mostramos que \(x(t)\) é de fato solução da equação diferencial.
+\end{proof}
