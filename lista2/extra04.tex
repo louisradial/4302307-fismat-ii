@@ -1,0 +1,45 @@
+\section{Exercício extra 4}
+\begin{proposition}{Soluções da equação de Hermite}{hermite}
+    As soluções gerais da equação de Hermite
+    \begin{equation*}
+        \diff[2]yz - 2z\diff{y}{z} + \lambda y(z) = 0,
+    \end{equation*}
+    com \(\lambda \in \mathbb{C}\) constante, são dadas por
+    \begin{equation*}
+        y(z) = c_0\left[ \sum_{k = 0}^\infty \frac{z^{2k}}{(2k)!}\prod_{\ell = 0}^{k - 1} (4\ell - \lambda)\right] + c_1\left[ \sum_{k = 0}^\infty \frac{z^{2k + 1}}{(2k+1)!}\prod_{\ell = 0}^{k - 1} (4\ell + 2 - \lambda)\right],
+    \end{equation*}
+    para todo \(z \in \mathbb{C}\), com \(c_0, c_1 \in \mathbb{C}\).
+\end{proposition}
+\begin{proof}
+    Como os coeficientes que acompanham \(\diff{y}{z} e y(z)\) são funções inteiras, segue que a solução da equação é inteira, logo podemos procurar uma solução do tipo \(y(x) = \sum_{k=0}^\infty c_kz^k\). Substituindo na equação diferencial,
+    \begin{equation*}
+        0=\sum_{k=0}^\infty k(k-1)c_k z^{k-2} + \sum_{k=0}^\infty (\lambda - 2k)c_kz^k =\sum_{k=0}^\infty \left[(k+2)(k+1)c_{k+2} + (\lambda - 2k)c_k\right] z^k,
+    \end{equation*}
+    obtemos a relação de recorrência
+    \begin{equation*}
+        c_{k+2} = \frac{2k - \lambda}{(k+2)(k+1)}c_k = \frac{2k - \lambda}{(k+2)!} k! c_k
+    \end{equation*}
+    para \(k \in \mathbb{N}\).
+
+    Mostremos por indução que
+    \begin{equation*}
+        c_{2k} = \frac{c_0}{(2k)!}\prod_{\ell = 0}^{k-1}(4\ell - \lambda)\quad\text{e}\quad
+        c_{2k+1} = \frac{c_1}{(2k+1)!}\prod_{\ell = 0}^{k-1}(4\ell+2 - \lambda)
+    \end{equation*}
+    para todo \(k \in \mathbb{N}\). Para \(k = 0\), as igualdades são verificadas trivialmente. Suponhamos que as igualdades sejam satisfeitas para algum \(k = n \in \mathbb{N}\), então da relação de recorrência, temos
+    \begin{align*}
+        c_{2n + 2} &= \frac{4n - \lambda}{(2n+2)!}(2n)! c_{2n}&
+        c_{2n + 3} &= \frac{4n + 2 - \lambda}{(2n+3)!}(2n + 1)!c_{2n+1}\\
+                   &= \frac{4n - \lambda}{(2n+2)!} c_0 \prod_{\ell = 0}^{n - 1} (4\ell - \lambda)&
+                   &= \frac{4n + 2- \lambda}{(2n+3)!} c_1 \prod_{\ell = 0}^{n - 1} (4\ell + 2- \lambda)\\
+                   &= \frac{c_0}{(2n+2)!} \prod_{\ell = 0}^n (4\ell - \lambda)&
+                   &= \frac{c_1}{(2n+3)!} \prod_{\ell = 0}^n (4\ell + 2 - \lambda),
+    \end{align*}
+    isto é, as expressões são válidas para \(n+1\). Pelo princípio da indução finita, as igualdades seguem para todo \(k \in \mathbb{N}\).
+
+    Dessa forma, a solução geral da equação de Hermite é dada por
+    \begin{equation*}
+        y(z) = c_0\left[ \sum_{k = 0}^\infty \frac{z^{2k}}{(2k)!}\prod_{\ell = 0}^{k - 1} (4\ell - \lambda)\right] + c_1\left[ \sum_{k = 0}^\infty \frac{z^{2k + 1}}{(2k+1)!}\prod_{\ell = 0}^{k - 1} (4\ell + 2 - \lambda)\right],
+    \end{equation*}
+    definida para todo \(z \in \mathbb{C}\). No caso particular em que \(\lambda = 2m\) para algum \(m \in \mathbb{N}\), segue que \(c_{m+2} = 0\). Por conseguinte, todos os termos \(c_{m+2k+2}\) se anulam para \(k \in \mathbb{N}\). Isto é, neste caso há uma solução polinomial de grau \(m\) para esta equação.
+\end{proof}
