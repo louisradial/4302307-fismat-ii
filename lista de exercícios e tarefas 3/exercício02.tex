@@ -1,0 +1,100 @@
+\section*{Exercício 2}
+\begin{corollary}\label{exercício2a}
+    A função de Green do problema de Sturm \(u''(x) = f(x)\) onde \(u\) é definida no intervalo \(x \in [0,1]\) e satisfaz \(u'(0) = 0\) e \(u(1) = 0\) é dada por
+    \begin{equation*}
+        G(x,\xi) = \left\{\begin{aligned}
+                \xi - 1, && 0 \leq x < \xi \leq 1\\
+                x - 1, && 0 \leq \xi < x \leq 1
+        \end{aligned}\right.
+    \end{equation*}
+\end{corollary}
+\begin{proof}
+    Identificando \(\alpha_1 = 0, \alpha_2 = 1, \beta_1 = 1,\) e \(\beta_2 = 0,\) o resultado segue da \cref{prop:exercício1}.
+\end{proof}
+
+\begin{proposition}{Autovalores e autofunções do problema de Sturm-Liouville \(u'' + \lambda u = 0\)}{exercício2b}
+    Os autovalores e as autofunções normalizadas do problema de Sturm-Liouville
+    \begin{equation*}
+        u'' + \lambda u = 0,
+    \end{equation*}
+    onde \(u\) é definida no intervalo \(x \in [0,1]\) e satisfaz as condições de contorno \(u'(0) = 0\) e \(u(1) = 0\) são dados por
+    \begin{equation*}
+        \lambda_n = \left(n-\frac{1}{2}\right)^2\pi^2\quad\text{e}\quad
+        u_n =\sqrt{2} \cos\left(\frac{2n-1}{2}\pi x\right),
+    \end{equation*}
+    para todo \(n \in \mathbb{N}\smallsetminus\set{0}.\)
+\end{proposition}
+\begin{proof}
+    Notamos que a solução geral da equação diferencial do problema de Sturm-Liouville é
+    \begin{equation*}
+        u(x) = \begin{cases}
+            A\cosh(\sqrt{-\lambda}x) + B\sinh(\sqrt{-\lambda}x), & \lambda < 0\\
+            Ax + B, &\lambda = 0\\
+            A\cos(\sqrt{\lambda}x)+ B\sin(\sqrt{\lambda}x),&\lambda > 0\\
+        \end{cases}.
+    \end{equation*}
+    Notemos que pelas condições de contorno, a solução para \(\lambda = 0\) é a solução trivial, portanto podemos descartar este caso. Para \(\lambda < 0\), segue de \(u'(0) = 0\) que \(B = 0\), então como o cosseno hiperbólico tem imagem positiva, a única solução de \(u(1) = 0\) é \(A = 0\), isto é, este caso também leva apenas a soluções triviais. Nos resta apenas o caso \(\lambda > 0\), temos de \(u'(0) = 0\) que \(B = 0\), logo da outra condição de contorno obtemos
+    \begin{equation*}
+        u(1) = 0 \implies \sqrt{\lambda} = \left(n-\frac12\right)\pi,\quad\text{com}\quad n \in \mathbb{N}\smallsetminus\set{0}.
+    \end{equation*}
+    Deste modo, os autovalores do problema de Sturm-Liouville considerado são
+    \begin{equation*}
+        \lambda_n = \left(n-\frac12\right)^2\pi^2,
+    \end{equation*}
+    para \(n \in \mathbb{N}\smallsetminus\set{0}\).
+
+    Para determinar as autofunções normalizadas, notamos que o produto interno para este problema de Sturm-Liouville coincide com o produto interno usual para o espaço de funções integráveis em \([0,1]\). Impondo que \(\inner{u_n}{u_n} = 1\), obtemos
+    \begin{equation*}
+        \int_{0}^{1} \dli{x}\abs{A}^2 \cos^2\left(\frac{2n-1}{2}\pi x\right) = 1 \implies \abs{A}^2 \int_{0}^{1}\dli{x} \frac{1 + \cos((2n-1)\pi x)}{2} = 1 \implies \abs{A} = \sqrt{2},
+    \end{equation*}
+    portanto as autofunções normalizadas do problema de Sturm-Liouville são
+    \begin{equation*}
+        u_n(x) = \sqrt{2} \cos\left(\frac{2n-1}{2}\pi x\right),
+    \end{equation*}
+    para \(n \in \mathbb{N}\smallsetminus\set{0}.\)
+\end{proof}
+
+\begin{corollary}\label{exercício2c}
+    A função de Green para o problema de Sturm associado é dada por
+    \begin{equation*}
+        G(x, \xi) = - \frac{8}{\pi^2}\sum_{m = 0}^{\infty} \frac{\cos\left(\frac{2m + 1}{2}\pi x\right)\cos\left(\frac{2m + 1}{2}\pi \xi\right)}{(2m + 1)^2},
+    \end{equation*}
+    para todo \((x, \xi) \in [0,1]\times[0,1]\).
+\end{corollary}
+\begin{proof}
+    Pela fórmula de Mercer, temos
+    \begin{equation*}
+        G(x,\xi) = - \sum_{n = 1}^{\infty} \frac{u_n(x) u_n(\xi)}{\lambda_n},
+    \end{equation*}
+    onde \(u_n\) é a autofunção normalizada associada ao autovalor \(\lambda_n\) do problema de Sturm-Liouville. Pela \cref{prop:exercício2b}, segue que
+    \begin{align*}
+        G(x, \xi) &= - \sum_{n = 1}^\infty \frac{\left[\sqrt{2}\cos\left(\frac{2n-1}{2}\pi x\right)\right]\left[\sqrt{2}\cos\left(\frac{2n-1}{2}\pi \xi\right)\right]}{\left(\frac{2n-1}{2}\right)^2\pi^2}\\
+                  &= - \frac{8}{\pi^2} \sum_{n = 1}^\infty \frac{\cos\left(\frac{2n-1}{2}\pi x\right)\cos\left(\frac{2n-1}{2}\pi \xi\right)}{(2n-1)^2}.
+    \end{align*}
+    Fazendo a troca de variável de soma \(m = n - 1\), obtemos a expressão desejada.
+\end{proof}
+\begin{corollary}
+    Vale a identidade
+    \begin{equation*}
+        \frac{\pi^2}{8} = \sum_{m = 0}^\infty \frac{1}{(2m+1)^2}.
+    \end{equation*}
+\end{corollary}
+\begin{proof}
+    Pelo \cref{exercício2a} e pela continuidade da função de Green, segue que \(G(0,0) = -1\). Desse modo, pelo \cref{exercício2c}, temos
+    \begin{equation*}
+        -\frac{8}{\pi^2} \sum_{m=0}^\infty \frac{1}{(2m+1)^2} = -1\implies
+        \sum_{m=0}^\infty \frac{1}{(2m+1)^2} = \frac{\pi^2}{8},
+    \end{equation*}
+    como desejado.
+\end{proof}
+
+\begin{proposition}{Solução para o problema de Sturm \(u''(x) = (3 - x)e^x\)}{exercício2d}
+    A solução do problema de Sturm
+    \begin{equation*}
+        u''(x) = (3-x)e^x
+    \end{equation*}
+    com condições de contorno \(u'(0) = 0\) e \(u(1) = 0\) é
+    \begin{equation*}
+        u(x) =
+    \end{equation*}
+\end{proposition}
