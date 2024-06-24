@@ -1,2 +1,84 @@
 \section*{Exercício 1}
+\begin{proposition}{Corda Pendurada}{corda pendurada}
+    A solução da equação da corda pendurada,
+    \begin{equation*}
+        \diffp[2]ut - g\diffp*{\left(z \diffp{u}{z}\right)}{z} = 0,
+    \end{equation*}
+    com \(g > 0\), que descreve o movimento de pequenas oscilações de uma corda de comprimento \(L\) localizada, quando em repouso, no intervalo \(z\in [0, L]\) do eixo vertical, pendurada pelo seu extremo superior e com condições iniciais \(u(z, 0) = u_0(z)\) e \(\diffp{u}{t}(z,0) = v_0(z)\) é
+    \begin{equation*}
+        u(z, t) = \sum_{k = 1}^\infty \left[a_k \cos\left(\frac{\alpha_k^0}{2}\sqrt{\frac{g}{L}}t\right)+b_k \sin\left(\frac{\alpha_k^0}{2}\sqrt{\frac{g}{L}}t\right)\right] J_0\left(\alpha_k^0 \sqrt{\frac{z}{L}}\right),
+    \end{equation*}
+    onde
+    \begin{equation*}
+        a_k = \frac{1}{(J_1(\alpha_k^0))^2L} \int_0^L \dli{z} u_0(z) J_0\left(\alpha_k^0\sqrt{\frac{z}{L}}\right)\quad\text{e}\quad
+        b_k = \frac{2}{(J_1(\alpha_k^0))^2\sqrt{gL} \alpha_k^0} \int_0^L \dli{z} v_0(z) J_0\left(\alpha_k^0\sqrt{\frac{z}{L}}\right),
+    \end{equation*}
+    com \(\alpha_k^0\) o \(k\)-ésimo zero positivo da função de Bessel \(J_0\).
+\end{proposition}
+\begin{proof}
+    Suponhamos que \(u(z, t) = U(z) T(t)\) é solução da equação diferencial a derivadas parciais, sujeita à condição de contorno \(U(L) = 0\). Substituindo na equação, obtemos
+    \begin{equation*}
+        U\ddot{T} - gU'T - gzU''T = 0 \implies \frac1g \frac{\ddot{T}(t)}{T(t)} = \frac{U'(z) + zU''(z)}{U(z)}.
+    \end{equation*}
+    Notemos que o lado esquerdo da equação é função apenas de \(t\) e o lado direito, apenas de \(z\), portanto ambos os lados devem ser iguais a uma constante \(\lambda \in \mathbb{R}\), isto é
+    \begin{equation*}
+        \begin{cases}
+            \frac{1}{g} \frac{\ddot{T}(t)}{T(t)} = \lambda\\
+            \frac{U'(z) + zU''(z)}{U(z)} = \lambda
+        \end{cases}
+        \iff
+        \begin{cases}
+            \ddot{T}(t) - g \lambda T(t) = 0\\
+            z U''(z) + U'(z) - \lambda U(z) = 0.
+        \end{cases}
+    \end{equation*}
+
+    No caso em que \(\lambda = 0\), temos \(T(t) = At + B\) e \(U(z) = C \ln{z} + D\). Como a singularidade em \(z = 0\) não tem significado físico, segue que \(C = 0\) e como \(U(L) = 0\), segue que \(U(z) = 0\). Isto é, o caso \(\lambda = 0\) só admite a solução trivial. Assim, consideraremos \(\lambda = - \nu^2\), para algum \(\nu\) ou imaginário ou real.
+
+    Seja \(\zeta^2 = 4\nu^2 z\) e seja \(\eta(\zeta) = u(z)\). Substituindo
+    \begin{equation*}
+        \diff{\zeta}{z} = \frac{2\nu^2}{\zeta},\quad  \diff[2]{\zeta}{z} = -\frac{(2\nu^2)^2}{\zeta^3},\quad \diff{U}{z} = \diff{\eta}{\zeta} \diff{\zeta}{z},\quad\text{e}\quad\diff[2]{U}{z} = \diff[2]{\eta}{\zeta}\left(\diff{\zeta}{z}\right)^2 + \diff{\eta}{\zeta}\diff[2]{\zeta}{z},
+    \end{equation*}
+    na equação diferencial obtemos
+    \begin{equation*}
+        \frac{\zeta^2}{4\nu^2}\left(\frac{(2\nu^2)^2}{\zeta^2}\diff[2]{\eta}{\zeta} - \frac{(2\nu^2)^2}{\zeta^3}\diff{\eta}{\zeta}\right) + \frac{2\nu^2}{\zeta}\diff{\eta}{\zeta} + \nu^2 \eta(\zeta) = 0 \implies
+        \zeta^2 \diff[2]{\eta}{\zeta} + \zeta\diff{\eta}{\zeta}  + \zeta^2 \eta(\zeta) = 0.
+    \end{equation*}
+    Com essa mudança de variáveis, obtemos uma equação de Bessel de ordem zero em \(\zeta\) para \(\eta\), portanto
+    \begin{equation*}
+        \eta(\zeta) = \beta J_0(\zeta),
+    \end{equation*}
+    visto que a singularidade em \(z = 0\) não tem significado físico. Desse modo, a solução geral da equação para \(U(z)\) é
+    \begin{equation*}
+        U(z) = \beta J_0(2\nu \sqrt{z}),
+    \end{equation*}
+    e então da condição de contorno temos
+    \begin{equation*}
+        \nu_k = \frac{\alpha_k^0}{2\sqrt{L}},\quad\text{com}\quad k \in \mathbb{N}^{\ast}
+    \end{equation*}
+    onde \(\alpha_k^0\) é o \(k\)-ésimo zero positivo da função de Bessel \(J_0\).
+
+    Assim, como \(\nu \in \mathbb{R}\), a solução geral da equação da corda pendurada é
+    \begin{equation*}
+        u(z, t) = \sum_{k = 1}^\infty \left[a_k \cos\left(\frac{\alpha_k^0}{2}\sqrt{\frac{g}{L}}t\right)+b_k \sin\left(\frac{\alpha_k^0}{2}\sqrt{\frac{g}{L}}t\right)\right] J_0\left(\alpha_k^0 \sqrt{\frac{z}{L}}\right),
+    \end{equation*}
+    para \(z \in [0, L]\). Das condições iniciais temos
+    \begin{equation*}
+        u_0(z) = \sum_{k = 1}^{\infty} a_k J_0\left(\alpha_k^0\sqrt{\frac{z}{L}}\right)\quad\text{e}\quad v_0(z) = \sum_{k = 1}^\infty \frac{\alpha_k^0}{2}\sqrt{\frac{g}{L}}b_k J_0\left(\alpha_k^0\sqrt{\frac{z}{L}}\right),
+    \end{equation*}
+    portanto podemos determinar os coeficientes \(a_k\) e \(b_k\) com as relações de ortogonalidade
+    \begin{equation*}
+        \int_0^1 \dli{x} x J_0(\alpha_k^0 x) J_0(\alpha_\ell^0 x) = \delta_{k\ell}\frac{(J_1(\alpha_k^0))^2}{2}.
+    \end{equation*}
+    Com a substituição de variáveis \(x^2 = \frac{z}{L}\) temos
+    \begin{equation*}
+        \int_0^L \dli{z} J_0\left(\alpha_k^0 \sqrt{\frac{z}{L}}\right) J_0 \left(\alpha_\ell^0 \sqrt{\frac{z}{L}}\right) = 2L \int_0^1 \dli{x} x J_0(\alpha_k^0 x) J_0(\alpha_\ell^0 x) = \delta_{k\ell} (J_1(\alpha_k^0))^2 L.
+    \end{equation*}
+    Multiplicando as equações para as condições iniciais por \(J_0\left(\alpha_\ell^0 \sqrt{\frac{z}{L}}\right)\) e integrando em \(z\) no intervalo \([0,L]\), temos
+    \begin{equation*}
+        a_k = \frac{1}{(J_1(\alpha_k^0))^2L} \int_0^L \dli{z} u_0(z) J_0\left(\alpha_k^0\sqrt{\frac{z}{L}}\right)\quad\text{e}\quad
+        b_k = \frac{2}{(J_1(\alpha_k^0))^2\sqrt{gL} \alpha_k^0} \int_0^L \dli{z} v_0(z) J_0\left(\alpha_k^0\sqrt{\frac{z}{L}}\right),
+    \end{equation*}
+    como desejado.
+\end{proof}
 
