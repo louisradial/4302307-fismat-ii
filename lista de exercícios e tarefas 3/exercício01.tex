@@ -1,2 +1,64 @@
 \section*{Exercício 1}
-
+\begin{proposition}{Função de Green para \(u'' = f\)}{exercício1}
+    A função de Green para o problema de Sturm
+    \begin{equation*}
+        \begin{cases}
+            u''(x) = f(x),\\
+            \alpha_1u(a) + \alpha_2u'(a) = 0\\
+            \beta_1u(b) + \beta_2u'(b) = 0
+        \end{cases}
+    \end{equation*}
+    para \(x \in [a,b]\) é dada por
+    \begin{equation*}
+        G(x,\xi) = \left\{\begin{aligned}
+                \frac{(\alpha_1 x - a \alpha_1 - \alpha_2)(\beta_1 \xi - b \beta_1 - \beta_2)}{(b - a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2},&& a \leq x < \xi \leq b\\
+                \frac{(\alpha_1 \xi - a \alpha_1 - \alpha_2)(\beta_1 x - b \beta_1 - \beta_2)}{(b - a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2}, && a \leq \xi < x \leq b\\
+        \end{aligned}\right.
+    \end{equation*}
+    caso \((b - a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2 \neq 0\).
+\end{proposition}
+\begin{proof}
+    Para determinar a função de Green, temos que resolver os problemas
+    \begin{equation*}
+        \begin{cases}
+            v_1''(x) = 0\\
+            \alpha_1 v_1(a) + \alpha_2 v_1'(a) = 0
+        \end{cases}
+        \quad\text{e}\quad
+        \begin{cases}
+            v_2''(x) = 0\\
+            \beta_1 v_2(b) + \beta_2 v_2'(b) = 0
+        \end{cases}
+    \end{equation*}
+    e então teremos
+    \begin{equation*}
+        G(x, \xi) = \left\{\begin{aligned}
+                \frac{v_1(x)v_2(\xi)}{\kappa},&& a \leq x < \xi \leq b\\
+                \frac{v_1(\xi)v_2(x)}{\kappa},&& a \leq \xi < x \leq b\\
+        \end{aligned}\right.
+    \end{equation*}
+    em que \(\kappa = v_1(a)v_2'(a) - v_1'(a)v_2(a).\) Das equações diferenciais, temos \(v_1(x) = Ax + B\) e \(v_2(x) = Cx + D\), portanto
+    \begin{equation*}
+        \kappa = v_1(a)v_2'(a) - v_1'(a)v_2(a) = BC - AD.
+    \end{equation*}
+    Segue das condições de contorno que
+    \begin{equation*}
+        \alpha_1B = -(a \alpha_1 + \alpha_2)A\quad\text{e}\quad \beta_1 D = -(b \beta_1 + \beta_2)C.
+    \end{equation*}
+    Assim, como \todo[como mostrar isso sem mentir?]
+    \begin{equation*}
+        \kappa = \frac{BC - AD}{AC}AC = \left(\frac{B}{A} - \frac{D}{C}\right)AC = \frac{(b-a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2}{\alpha_1 \beta_1}AC,
+    \end{equation*}
+    teremos a função bem definida apenas para
+    \begin{equation*}
+        (b - a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2 \neq 0.
+    \end{equation*}
+    Neste caso,
+    \begin{equation*}
+        G(x,\xi) = \left\{\begin{aligned}
+            \frac{(\alpha_1 x - a \alpha_1 - \alpha_2)(\beta_1 \xi - b \beta_1 - \beta_2)}{(b - a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2}, && a \leq x < \xi \leq b\\
+            \frac{(\alpha_1 \xi - a \alpha_1 - \alpha_2)(\beta_1 x - b \beta_1 - \beta_2)}{(b - a)\alpha_1 \beta_1 + \alpha_1 \beta_2 - \beta_1 \alpha_2}, && a \leq \xi < x \leq b\\
+        \end{aligned}\right.
+    \end{equation*}
+    é a função de Green procurada.
+\end{proof}
