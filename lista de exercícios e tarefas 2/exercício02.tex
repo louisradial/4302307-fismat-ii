@@ -1,0 +1,118 @@
+\section*{Exercício 2}
+% \begin{lemma}{Solução periódica geral da equação de Laplace em coordenadas polares}{laplace}
+%     A solução geral \(2\pi\)-periódica na segunda variável da equação de Laplace,
+%     \begin{equation*}
+%         \nabla^2 f(\rho, \varphi) = 0,
+%     \end{equation*}
+%     é dada por
+%     \begin{equation*}
+%         f(\rho, \varphi) = \alpha \ln\rho + \beta + \sum_{k = 1}^\infty \left[a_m\cos(m\varphi) + b_m \sin(m\varphi)\right]\left(c_m \rho^m + d_m\rho^{-m}\right),
+%     \end{equation*}
+%     para constantes \(a_m, b_m, c_m, d_m, \alpha, \beta \in \mathbb{R}\), para \(m > 0\).
+% \end{lemma}
+% \begin{proof}
+%     Supondo que a solução é do tipo \(f(\rho, \varphi) = R(\rho) \Phi(\varphi)\), temos
+%     \begin{equation*}
+%         \frac{1}{\rho} R'(\rho) \Phi(\varphi) + R''(\rho)\Phi(\varphi) + \frac{1}{\rho^2} R(\rho)\Phi''(\varphi) = 0 \implies \frac{\rho R'(\rho) + \rho^2 R''(\rho)}{R(\rho)} = - \frac{\Phi''(\varphi)}{\Phi(\varphi)}.
+%     \end{equation*}
+%     Como o lado direito é função só de \(\varphi\) e o lado esquerdo é função só de \(\rho\), segue que ambos os lados são iguais a uma constante. Para que a solução não trivial seja \(2\pi\)-periódica em \(\varphi\), esta constante deve ser igual ao quadrado de um inteiro não negativo \(m\), de modo que, se \(m > 0\),
+%     \begin{equation*}
+%         \Phi_m(\phi) = a_m \cos(m\varphi) + b_m \sin(m \varphi)\quad\text{e}\quad \rho^2 R''(\rho) + \rho R'(\rho) - m^2 R(\rho) = 0
+%     \end{equation*}
+%     e, se \(m = 0\),
+%     \begin{equation*}
+%         \Phi_0(\phi) = b_0\quad\text{e}\quad \rho^2 R''(\rho) + \rho R'(\rho) = 0.
+%     \end{equation*}
+%     Estas equações diferenciais para \(R\) são equações de Euler, portanto as soluções são
+%     \begin{equation*}
+%         R_m(\rho) = c_m \rho^m + d_m \rho^{-m}\quad\text{e}\quad R_0(\rho) = c_0 \ln\rho + d_0.
+%     \end{equation*}
+%     Assim, a solução geral para a equação de Laplace em coordenadas polares \(2\pi\)-periódica em \(\varphi\) é
+%     \begin{equation*}
+%         f(\rho, \varphi) = \sum_{k = 1}^{\infty} \left[a_m\cos(m\varphi) + b_m \sin(m\varphi)\right],
+%     \end{equation*}
+%     como queríamos mostrar.
+% \end{proof}
+\begin{proposition}{Membrana circular com amortecimento}{membrana}
+    Considere a equação de ondas com amortecimento
+    \begin{equation*}
+        \frac{1}{c^2} \diffp[2]{u}{t} + \gamma \diffp{u}{t} - \nabla^2 u = 0,
+    \end{equation*}
+    com \(c, \gamma > 0\), no interior de um disco de raio \(R > 0\), com \(\abs{u(\rho, \varphi, t)} < \infty\), sujeita à condição de contorno de Dirichlet \(u(R, \varphi, t) = 0\) e às condições iniciais \(u(\rho, \varphi, 0) = 0\) e \(\diffp{u}{t}(\rho, \varphi, 0) = v_0(\rho)\), onde
+    \begin{equation*}
+        v_0(\rho) = \begin{cases}
+            V,&\rho \in [0, R_0]\\
+            0,& \rho \in [R_0, R],
+        \end{cases}
+    \end{equation*}
+    para \(0 < R_0 < R\). A solução desta equação de ondas é
+\end{proposition}
+\begin{proof}
+    Suponhamos que a solução seja da forma \(u(\rho, \varphi, t) = \Xi(\rho, \varphi) T(t)\), então, ao substituir na equação diferencial obtemos
+    \begin{equation*}
+        \frac{1}{c^2}\Xi \ddot{T} + \gamma \Xi \dot{T} - \nabla^2\Xi T = 0 \implies \frac{\nabla^2\Xi(\rho, \varphi)}{\Xi(\rho, \varphi)} = \frac{\ddot{T}(t) + c^2 \gamma \dot{T}(t)}{c^2 T(t)}.
+    \end{equation*}
+    Como o lado direito é apenas função de \(t\) e o lado esquerdo é função apenas de \(\rho, \varphi\), segue que ambos são iguais a uma constante \(\lambda \in \mathbb{R}\), isto é,
+    \begin{equation*}
+        \nabla^2 \Xi(\rho, \varphi) = \lambda \Xi(\rho, \varphi)\quad\text{e}\quad \ddot{T}(t) + c^2 \gamma \dot{T}(t) - \lambda c^2 T(t) = 0.
+    \end{equation*}
+
+    Notemos que no caso em que \(\lambda = 0\), a equação para \(\Xi\) se torna a equação de Laplace, portanto como \(\Xi(R, \varphi) = 0\) e \(\Xi\) é pelo menos duas vezes diferenciável, então\footnote{Ver fim da lista para a P2 de Cálculo III.} \(\Xi(\rho, \varphi) = 0\). Desse modo, para uma solução não trivial, devemos ter \(\lambda \neq 0\). Por este motivo, tomaremos \(\lambda = - \nu^2\), para algum \(\nu\) ou real ou imaginário.
+
+    Suponhamos agora que \(\Xi(\rho, \varphi) = X(\rho)\Phi(\varphi)\), então
+    \begin{align*}
+        \nabla^2\Xi(\rho, \varphi) + \nu^2\Xi(\rho, \varphi) = 0 &\implies \frac{1}{\rho} X'(\rho) \Phi(\varphi) + X''(\rho)\Phi(\varphi) + \frac{1}{\rho^2} X(\rho)\Phi''(\varphi) + \nu^2 X(\rho)\Phi(\varphi) = 0\\
+                                                                 &\implies \frac{\rho X'(\rho) + \rho^2 X''(\rho)}{X(\rho)} + \rho^2\nu^2 = - \frac{\Phi''(\varphi)}{\Phi(\varphi)}.
+    \end{align*}
+    Como o lado direito depende só de \(\varphi\) e o lado esquerdo depende só de \(\rho\), ambos os lados devem ser iguais a uma constante. Para que a solução não trivial seja \(2\pi\)-periódica em \(\varphi\), esta constante deve ser igual ao quadrado de um inteiro não negativo, \(m^2\), de modo que, se \(m \neq 0\),
+    \begin{equation*}
+        \Phi_m(\varphi) = a_m \cos(m \varphi) + b_m \sin(m \varphi)\quad\text{e}\quad\rho^2 X''(\rho) + \rho X'(\rho) + (\rho^2 \nu^2 - m^2)X(\rho) = 0,
+    \end{equation*}
+    e, se \(m = 0\), como a solução deve ser limitada,
+    \begin{equation*}
+        \Phi_0(\varphi) = b_0\quad\text{e}\quad \rho^2 X''(\rho) + \rho X'(\rho) + \rho^2 \nu^2X(\rho) = 0.
+    \end{equation*}
+    Notemos que obtemos equações de Bessel generalizadas para as equações diferenciais de \(X(\rho)\), cujas soluções gerais são
+    \begin{equation*}
+        X_m(\rho) = a J_m(\nu \rho),
+    \end{equation*}
+    para todo \(m \geq 0\), já que a singularidade em \(\rho = 0\) não tem sentido físico. Com a condição de contorno, vemos que \(\nu\) deve ser real para que \(X(R) = 0\), e que
+    \begin{equation*}
+        \nu_{m,k} = \frac{\alpha_k^m}{R},
+    \end{equation*}
+    onde \(\alpha_k^m\) é o \(k\)-ésimo zero positivo da função de Bessel \(J_m\). Isto é, obtemos a solução geral para \(\Xi(\rho, \varphi)\), dada por
+    \begin{equation*}
+        \Xi_{m,k}(\rho, \varphi) =  \left[a_{m,k}\cos(m\varphi) + b_{m,k}\sin(m\varphi)\right]J_m\left(\alpha_k^m \frac{\rho}{R}\right)
+    \end{equation*}
+    para \(m, k > 0\) e
+    \begin{equation*}
+       \Xi_{0,k}(\rho, \varphi) = b_0 J_0\left(\alpha_k^0\frac{\rho}{R}\right),
+    \end{equation*}
+    para \(m = 0, k > 0\).
+
+    Definindo \(2 \eta = c^2 \gamma\) e \(\omega_{m,k} = \nu_{m,k} c\), a equação diferencial para \(T(t)\) é
+    \begin{equation*}
+        \ddot{T}(t) + 2 \eta \dot{T}(t) + \omega_{m,k}^2T(t) = 0,
+    \end{equation*}
+    que é a equação diferencial para um oscilador harmônico amortecido, cujas soluções são separadas em três casos distintos,
+    \begin{equation*}
+        \begin{cases}
+            \text{amortecimento subcrítico:}\quad \eta^2 < \omega_{m,k}^2 \implies T_{m,k}(t) = e^{-\eta t}\left(c_{m,k} \cos(\Omega_{m,k}t) + d_{m,k}\sin(\Omega_{m,k}t)\right);\\
+            \text{amortecimento crítico:}\quad\eta^2 = \omega_{m,k}^2 \implies T_{m,k}(t) = e^{-\eta t}\left(c_{m,k}t + d_{m,k}\right);\quad\text{e}\\
+            \text{amortecimento supercrítico:}\quad\eta^2 > \omega_{m,k}^2 \implies T_{m,k}(t) = c_{m,k}e^{(\Omega_{m,k}-\eta)t} + d_{m,k}e^{-(\Omega_{m,k} + \eta)t},
+        \end{cases}
+    \end{equation*}
+    onde definimos \(\Omega_{m,k} = \abs*{\eta^2 - \omega_{m,k}^2}^{\frac12}\). Seja \(\chi : \mathbb{N} \times \mathbb{N} \to \set{-1,0,1}\) definido por
+    \begin{equation*}
+        \chi(m,k) = \begin{cases}
+            1,& \alpha_k^m < \frac{c \gamma R}{2}\\
+            0,& \alpha_k^m = \frac{c \gamma R}{2}\\
+            -1,& \alpha_k^m > \frac{c \gamma R}{2}
+        \end{cases}
+    \end{equation*}
+    a função que retorna \(1\) caso o amortecimento seja supercrítico, \(0\) se for crítico e \(-1\) se for subcrítico. Então, podemos escrever a solução para \(T_{m,k}(t)\) como a solução geral da equação para a membrana circular com amortecimento é
+    \begin{equation*}
+        u(\rho, \varphi, t) = \sum_{k = 1}^\infty \sum_{m = 0}^\infty \Xi_{m,k}(\rho, \varphi)T_{m,k}(t).
+    \end{equation*}
+    \todo[Terminar, dúvidas.]
+\end{proof}
