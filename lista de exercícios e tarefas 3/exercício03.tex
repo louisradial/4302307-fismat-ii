@@ -1,0 +1,226 @@
+\section*{Exercício 3}
+\begin{proposition}{Função de Green para o problema de Sturm \((e^x u'(x))' = f(x)\)}{exercício3a}
+    Seja \(L\) o operador de Liouville dado por
+    \begin{equation*}
+        (Lu)(x) = \diff*{\left(e^x \diff{u}{x}\right)}{x}.
+    \end{equation*}
+    A função de Green para o problema de Sturm \(Lu = f\) com condições de contorno \(u(0) = u(1) = 0\) no intervalo \([0,1]\) é
+    \begin{equation*}
+        G(x,\xi) = \left\{\begin{aligned}
+                \frac{(e^{-x} - 1)(e^{-\xi} - e^{-1})}{1 - e^{-1}}, && 0 \leq x \leq \xi \leq 1\\
+                \frac{(e^{-\xi} - 1)(e^{-x} - e^{-1})}{1 - e^{-1}}, && 0 \leq \xi \leq x \leq 1
+        \end{aligned}\right.
+    \end{equation*}
+    para \((x, \xi) \in [0,1]\times [0,1]\).
+\end{proposition}
+\begin{proof}
+    Notemos que o núcleo do operador é dado por
+    \begin{align}
+        Lu = 0 &\implies u''(x) + u'(x) = 0\\
+               &\implies u(x) = \alpha e^{-x} + \beta,
+    \end{align}
+    com \(\alpha, \beta\) constantes. Desse modo, a solução para os problemas
+    \begin{equation*}
+        \begin{cases}
+            Lv_1 = 0\\
+            v_1(0) = 0
+        \end{cases}
+        \quad\text{e}\quad
+        \begin{cases}
+            Lv_2 = 0\\
+            v_2(1) = 0
+        \end{cases}
+    \end{equation*}
+    são dadas por
+    \begin{equation*}
+        v_1(x) = A(e^{-x} - 1)\quad\text{e}\quad v_2(x) = B(e^{-x} - e^{-1}),
+    \end{equation*}
+    para constantes \(A, B\) não nulas. Assim, o determinante Wronskiano desse par de funções é
+    \begin{align*}
+        W(x) &= v_1(x) v_2'(x) - v_1'(x) v_2(x)\\
+             &= AB e^{-x}(e^{-x} - e^{-1}) -AB e^{-x} (e^{-x} - 1)\\
+             &= AB e^{-x} (1 - e^{-1}).
+    \end{align*}
+    Por fim, a função de Green é dada por
+    \begin{align*}
+        G(x,\xi) = \left\{\begin{aligned}
+                \frac{v_1(x)v_2(\xi)}{e^{x}W(x)}, && 0 \leq x \leq \xi \leq 1\\
+                \frac{v_1(\xi)v_2(x)}{e^{x}W(x)}, && 0 \leq \xi \leq x \leq 1
+        \end{aligned}\right. &\implies G(x,\xi) = \left\{\begin{aligned}
+                \frac{A(e^{-x} - 1)B(e^{-\xi} - e^{-1})}{AB(1 - e^{-1})}, && 0 \leq x \leq \xi \leq 1\\
+                \frac{A(e^{-\xi} -1)B(e^{-x} - e^{-1})}{AB(1 - e^{-1})}, && 0 \leq \xi \leq x \leq 1
+        \end{aligned}\right.
+\\
+        &\implies G(x,\xi) = \left\{\begin{aligned}
+                \frac{(e^{-x} - 1)(e^{-\xi} - e^{-1})}{1 - e^{-1}}, && 0 \leq x \leq \xi \leq 1\\
+                \frac{(e^{-\xi} - 1)(e^{-x} - e^{-1})}{1 - e^{-1}}, && 0 \leq \xi \leq x \leq 1
+        \end{aligned}\right.
+    \end{align*}
+    como desejado.
+\end{proof}
+
+\begin{proposition}{Autofunções do problema de Sturm-Liouville \((e^xu'(x))' + \lambda e^x u(x) = 0\)}{exercício3b}
+    Seja \(L\) o mesmo operador de Liouville definido na \cref{prop:exercício3a}. Os autovalores e as autofunções normalizadas do problema de Sturm-Liouville \((Lu)(x) + \lambda e^x u(x) = 0\) com condições de contorno \(u(0) = u(1) = 0\) no intervalo \([0,1]\) são
+    \begin{equation*}
+        \lambda_n = n^2 \pi^2 + \frac14
+        \quad\text{e}\quad
+        u_n(x) = \sqrt{2} \exp\left(-\frac{1}{2}x\right)\sin(n\pi x)
+    \end{equation*}
+    para todo \(n \in \mathbb{N}\smallsetminus\set{0}\).
+\end{proposition}
+\begin{proof}
+    Notemos que
+    \begin{equation*}
+        (Lu)(x) + \lambda e^{x} u(x) = e^x \left(\diff[2]{u}{x} + \diff{u}{x} + \lambda u(x)\right),
+    \end{equation*}
+    logo as soluções do problema de Sturm-Liouville são soluções da equação diferencial ordinária
+    \begin{equation*}
+        \diff[2]{u}{x} + \diff{u}{x} + \lambda u(x) = 0,
+    \end{equation*}
+    com condições de contorno \(u(0) = u(1) = 0\), já que \(e^x \neq 0\).
+
+    Para \(\lambda = 0\), já vimos na \cref{prop:exercício3a} que a solução geral é
+    \begin{equation*}
+        u(x) = \alpha e^{-x} + \beta.
+    \end{equation*}
+    Das condições de contorno temos
+    \begin{equation*}
+        \begin{cases}
+            \alpha + \beta = 0\\
+            \alpha e^{-1} + \beta = 0
+        \end{cases}\implies \alpha = \beta = 0,
+    \end{equation*}
+    isto é, o caso \(\lambda = 0\) admite apenas a solução trivial. Para \(\lambda < \frac14\) e \(\lambda \neq 0\), temos a solução geral
+    \begin{equation*}
+        u(x) = \alpha \exp\left(\frac{-1 + \sqrt{1 - 4 \lambda}}{2}x\right) + \beta \exp\left(\frac{-1 - \sqrt{1 - 4 \lambda}}{2}x\right),
+    \end{equation*}
+    portanto das condições de contorno temos
+    \begin{equation*}
+        \begin{cases}
+            \alpha + \beta = 0\\
+        \alpha \exp\left(\frac{-1 + \sqrt{1 - 4 \lambda}}{2}\right) + \beta \exp\left(\frac{-1 - \sqrt{1 - 4 \lambda}}{2}\right) = 0
+        \end{cases}\implies \alpha = \beta = 0,
+    \end{equation*}
+    isto é, este caso também admite apenas a solução trivial. Para \(\lambda = \frac14\), temos a solução geral
+    \begin{equation*}
+        u(x) = (\alpha x + \beta)e^{- \frac12 x}
+    \end{equation*}
+    e segue trivialmente que apenas a solução trivial satisfaz as condições de contorno. Por fim,para \(\lambda > \frac14\), temos a solução geral
+    \begin{equation*}
+        u(x) = e^{-\frac12x}\left[\alpha \cos\left(x\sqrt{\lambda - \frac14}\right) + \beta \sin\left(x\sqrt{\lambda - \frac14}\right)\right],
+    \end{equation*}
+    portanto da condição de contorno \(u(0) = 0\), segue que \(\alpha = 0\), e da condição de contorno \(u(1) = 0\), segue que as soluções não triviais devem satisfazer
+    \begin{equation*}
+        \sin\left(\sqrt{\lambda - \frac14}\right) = 0 \implies \sqrt{\lambda - \frac14} = n\pi,
+    \end{equation*}
+    com \(n \in \mathbb{N}\smallsetminus\set{0}.\) Isto é, os autovalores para este problema de Sturm-Liouville são
+    \begin{equation*}
+        \lambda_n = n^2 \pi^2 + \frac14,
+    \end{equation*}
+    para \(n \in \mathbb{N} \smallsetminus\set{0}\).
+
+    Notemos que o produto interno para este problema de Sturm-Liouville é dado por
+    \begin{equation*}
+        \inner{f}{g}_r = \int_{0}^{1} e^{t}\dli{t}\overline{f(t)}g(t)
+    \end{equation*}
+    para quaisquer funções integráveis \(f, g\) em \([0,1]\). Para determinar as autofunções, devemos impor que as soluções encontradas têm norma unitária em relação a este produto interno, isto é,
+    \begin{align*}
+        \inner{u_n}{u_n}_r = 1 &\implies \int_0^1 e^t \dli{t} \abs{\beta_n}^2 e^{-t}\sin^2\left(n\pi t\right) = 1\\
+                               &\implies  \frac12\abs{\beta_n}^2 \left[\int_0^1 \dli{t} - \int_0^1 \dli{t} \cos(2n\pi t)\right] = 1\\
+                               &\implies  \abs{\beta_n}^2 = 2.
+    \end{align*}
+    Deste modo,
+    \begin{equation*}
+        u_n(x) = \sqrt{2} \exp\left(-\frac{1}{2}x\right)\sin(n\pi x)
+    \end{equation*}
+    são as autofunções para este problema de Sturm-Liouville, para \(n \in \mathbb{N}\smallsetminus\set{0}\).
+\end{proof}
+\begin{corollary}
+    A função de Green dada pela \cref{prop:exercício3a} pode ser dada pela série
+    \begin{equation*}
+        G(x, \xi) = - 8\sum_{n = 1}^\infty \frac{\exp\left(-\frac{x+\xi}2\right)\sin(n\pi x)\sin(n\pi \xi)}{1 + 4n^2\pi^2}.
+    \end{equation*}
+\end{corollary}
+
+\begin{lemma}{Aplicação do problema de Sturm-Liouville}{sec1933}
+    Sejam \(\lambda_n \in \mathbb{R} \smallsetminus\set{0}\) e \(u_n : \mathbb{R} \to \mathbb{R}\) os autovalores e as autofunções normalizadas do problema de Sturm-Liouville regular \(Lu + \lambda ru = 0\), com condições de contorno lineares e homogêneas no intervalo \([a,b]\subset \mathbb{R}\). Seja \(f : \mathbb{R} \to \mathbb{R}\) uma função contínua e seja \(\gamma \in \mathbb{R}\) um número real que não seja um autovalor do problema de Sturm-Liouville, então a solução da equação diferencial
+    \begin{equation*}
+        Lu + \gamma ru = f
+    \end{equation*}
+    sujeita às mesmas condições de contorno que o problema de Sturm-Liouville é dada por
+    \begin{equation*}
+        u(x) = \sum_{\ell = 1}^\infty \frac{\inner{u_\ell}{f}}{\gamma - \lambda_\ell}u_\ell(x).
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Seja \(G : [a,b]\times[a,b] \to \mathbb{R}\) a função de Green para o problema de Sturm associado. Então, temos
+    \begin{equation*}
+        Lu = f - \gamma r u \implies u(x) = \underbrace{\int_a^b \dli{\xi} G(x, \xi) f(\xi)}_{g(x)} - \gamma \int_a^b \dli{\xi} r(\xi)G(x,\xi) u(\xi).
+    \end{equation*}
+    Pela fórmula de Mercer, a função de Green é dada pela série uniformemente convergente
+    \begin{equation*}
+        G(x,\xi) = -\sum_{n = 1}^\infty \frac{u_n(x)u_n(\xi)}{\lambda_n},
+    \end{equation*}
+    portanto podemos escrever
+    \begin{align*}
+        u(x) &= g(x) + \gamma \int_{a}^{b} r(\xi) \dli{\xi} \sum_{n = 1}^\infty \frac{u_n(x)u_n(\xi)}{\lambda_n} u(\xi)\\
+             &= g(x) + \gamma \sum_{n=1}^\infty \frac{u_n(x)}{\lambda_n} \int_{a}^{b} r(\xi)\dli{\xi} u_n(\xi)u(\xi)\\
+             &= g(x) + \gamma \sum_{n=1}^\infty \frac{\inner{u_n}{u}_r}{\lambda_n}u_n(x).
+    \end{align*}
+
+    Tomando o produto interno com \(u_m\), obtemos
+    \begin{equation*}
+        \inner{u_m}{u}_r = \inner{u_m}{g}_r + \gamma \sum_{n = 1}^\infty \frac{\inner{u_n}{u}_r}{\lambda_n} \inner{u_m}{u_n}_r,
+    \end{equation*}
+    portanto, como \(\inner{u_m}{u_n}_r = \delta_{mn}\), segue que
+    \begin{equation*}
+        \inner{u_m}{u}_r = \frac{\lambda_m \inner{u_m}{g}_r}{\lambda_m - \gamma}.
+    \end{equation*}
+    Substituindo na expressão para \(u\), temos
+    \begin{equation*}
+        u(x) = g(x) + \gamma \sum_{n = 1}^\infty \frac{\inner{u_n}{g}_r}{\lambda_n - \gamma}u_n(x).
+    \end{equation*}
+
+    Utilizando a fórmula de Mercer mais uma vez, obtemos
+    \begin{align*}
+        g(x) &= -\int_a^b \dli{\xi} \sum_{k = 1}^\infty \frac{u_k(x)u_k(\xi)}{\lambda_k} f(\xi)\\
+             &= - \sum_{k = 1}^\infty \frac{u_k(x)}{\lambda_k} \int_{a}^{b}\dli{\xi} u_k(\xi) f(\xi)\\
+             &= - \sum_{k = 1}^\infty \frac{\inner{u_k}{f}}{\lambda_k}u_k(x).
+    \end{align*}
+    Tomando o produto interno com \(u_n\), temos
+    \begin{equation*}
+        \inner{u_n}{g}_r = -\frac{\inner{u_n}{f}}{\lambda_n}.
+    \end{equation*}
+    Substituindo na expressão para \(u\), obtemos
+    \begin{align*}
+        u(x) &= - \sum_{k=1}^\infty \frac{\inner{u_k}{f}}{\lambda_k}u_k(x) + \sum_{n=1}^\infty\frac{\gamma\inner{u_n}{f}}{\lambda_n(\gamma - \lambda_n)}u_n(x)\\
+             &= \sum_{\ell = 1}^\infty \left(\frac{\gamma}{\gamma - \lambda_\ell} - 1\right)\frac{\inner{u_\ell}{f}}{\lambda_\ell}u_\ell(x)\\
+             &= \sum_{\ell = 1}^\infty \frac{\inner{u_\ell}{f}}{\gamma - \lambda_\ell}u_\ell(x),
+    \end{align*}
+    como queríamos mostrar.
+\end{proof}
+\begin{corollary}
+    A solução da equação diferencial
+    \begin{equation*}
+        (e^xu'(x))' + 5e^x u(x) = f(x)
+    \end{equation*}
+    para \(f(x) = e^{\frac{x}{2}}\), com condições de contorno \(u(0) = u(1) = 0\) no intervalo \([0,1]\) é
+\end{corollary}
+\begin{proof}
+    Uma vez que 5 não é autovalor do problema de Sturm-Liouville associado, precisamos apenas determinar os produtos internos \(\inner{u_\ell}{f}\), segundo o \cref{lem:sec1933}.
+
+    Temos
+    \begin{equation*}
+        \inner{u_\ell}{f} = \int_0^1 \dli{\xi} \sqrt{2} \sin(\ell\pi x) = \frac{\sqrt{2}\left[1 - (-1)^\ell\right]}{\ell \pi}
+    \end{equation*}
+    para todo \(\ell \in \mathbb{N} \smallsetminus\set{0}\). Portanto, \(\inner{u_{2\ell}}{f} = 0\) e
+    \begin{equation*}
+        \inner{u_{2\ell-1}}{f} = \frac{2\sqrt{2}}{(2\ell - 1)\pi}.
+    \end{equation*}
+    Assim, a solução da equação diferencial é
+    \begin{align*}
+        u(x) &= \frac{4}{\pi} \sum_{\ell = 1}^\infty \frac{\exp\left(-\frac12x\right)\sin\left[(2\ell - 1)\pi x\right]}{[5 - \frac{1}{4} - (2\ell - 1)^2\pi^2](2\ell - 1)}\\
+             &= \frac{16}{\pi} \sum_{\ell = 1}^\infty \frac{\exp\left(-\frac12x\right)\sin\left[(2\ell - 1)\pi x\right]}{[19 - (4\ell - 2)^2\pi^2](2\ell - 1)},
+    \end{align*}
+    como desejado.
+\end{proof}
