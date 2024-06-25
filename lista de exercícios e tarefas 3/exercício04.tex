@@ -1,1 +1,67 @@
 \section*{Exercício 4}
+\begin{proposition}{Autofunções do problema de Sturm-Liouville com \(u'' + u' + \lambda u = 0\)}{exercício4d}
+    Os autovalores e as autofunções normalizadas do problema de Sturm-Liouville \(u'' + u' + \lambda u = 0\) com condições de contorno \(u(0) = 0\) e \(u'(1) = 0\) são
+    \begin{equation*}
+        \lambda_n =\left(n - \frac12\right)^2 \pi^2 + \frac14
+        \quad\text{e}\quad
+        u_n(x) =\sqrt{2} \exp\left(-\frac{1}{2}x\right)\cos\left(\frac{2n - 1}{2}\pi x\right)
+    \end{equation*}
+    para \(n \in \mathbb{N}\smallsetminus{0}\). Assim,
+    \begin{equation*}
+        G(x,\xi) = - 8 \sum_{n = 1}^\infty \frac{\exp\left(-\frac{x + \xi}{2}\right)\cos\left(\frac{2n - 1}{2} \pi x\right)\cos\left(\frac{2n - 1}{2} \pi \xi\right)}{\left(2n - 1\right)^2\pi^2 + 1},
+    \end{equation*}
+    para \((x,\xi) \in [0,1]\times[0,1]\), é a função de Green do problema de Sturm associado.
+\end{proposition}
+\begin{proof}
+    Como já feito na \cref{prop:exercício3b}, temos as soluções gerais da equação diferencial, que dependem se \(\lambda\) é nulo ou se \(\lambda - \frac14\) é positivo, nulo, ou negativo. Para \(\lambda = 0\), temos \(u(x) = \alpha e^{-x} + \beta\), portanto de \(u'(1) = 0\), segue que \(\alpha = 0\), levando à solução trivial. Para \(\lambda = \frac14\), temos \(u(x) = (\alpha x + \beta)e^{-\frac12 x}\), logo de \(u(0) = 0\), segue que \(\beta = 0\), portanto
+    \begin{equation*}
+        u'(x) = \alpha \left(1 - \frac12 x\right)e^{-\frac12 x},
+    \end{equation*}
+    e temos de \(u'(1) = 0\) que \(\alpha = 0\). Para \(\lambda < \frac14\) e \(\lambda \neq 0\), temos a solução geral
+    \begin{equation*}
+        u(x) = \alpha \exp\left(\lambda_+ x\right) + \beta \exp\left(\lambda_-x\right),
+    \end{equation*}
+    onde \(\lambda_+ = \frac{-1 + \sqrt{1 - 4 \lambda}}{2}\) e \(\lambda_- = \frac{-1 - \sqrt{1 - 4 \lambda}}{2}\) são valores reais e distintos. Das condições de contorno, temos
+    \begin{equation*}
+        \begin{cases}
+            \alpha + \beta = 0\\
+            \lambda_+ \alpha e^{\lambda_+} + \lambda_- \beta e^{\lambda_-} = 0
+        \end{cases} \implies
+        \alpha (\lambda_+ e^{\lambda_+} - \lambda_- e^{\lambda_-}) = 0,
+    \end{equation*}
+    e \todo[mostrando que \(\lambda_+ e^{\lambda_+} - \lambda_- e^{\lambda_-}\) não se anula], segue que há apenas a solução trivial. Para \(\lambda > \frac14\), temos a solução geral
+    \begin{equation*}
+        u(x) = e^{-\frac12x}\left[\alpha \cos\left(x\sqrt{\lambda - \frac14}\right) + \beta \sin\left(x\sqrt{\lambda - \frac14}\right)\right],
+    \end{equation*}
+    portanto da condição de contorno \(u(0) = 0\), segue que \(\alpha = 0\), e da condição de contorno \(u'(1) = 0\), segue que as soluções não triviais devem satisfazer
+    \begin{equation*}
+        2 \sqrt{\lambda - \frac14}\cos\left(\sqrt{\lambda - \frac14}\right) - \sin\left(\sqrt{\lambda - \frac14}\right) = 0 \implies 2\sqrt{\lambda - \frac14} = \tan\left(\sqrt{\lambda - \frac14}\right).
+    \end{equation*}
+    Notemos que a equação transcendental obtida possui infinitas soluções para \(\lambda > \frac14\), uma vez que a imagem da tangente contém todos os números reais positivos e a imagem da raiz quadrada também. Seja \(\varphi_n\) a \(n\)-ésima solução positiva da equação transcendental \(2\varphi = \tan \varphi\), então os autovalores do problema de Sturm-Liouville são dados por
+    \begin{equation*}
+        \lambda_n = \varphi_n^2 + \frac14,
+    \end{equation*}
+    para \(n \in \mathbb{N} \smallsetminus\set{0}\).
+
+    Notemos que o produto interno para este problema de Sturm-Liouville é dado por
+    \begin{equation*}
+        \inner{f}{g}_r = \int_{0}^{1} e^{t}\dli{t}\overline{f(t)}g(t)
+    \end{equation*}
+    para quaisquer funções integráveis \(f, g\) em \([0,1]\). Para determinar as autofunções, devemos impor que as soluções encontradas têm norma unitária em relação a este produto interno, isto é,
+    \begin{align*}
+        \inner{u_n}{u_n}_r = 1 &\implies \int_0^1 e^t \dli{t} \abs{\beta_n}^2 e^{-t}\cos^2\left(\varphi_n t\right) = 1\\
+                               &\implies  \frac12\abs{\beta_n}^2 \left[\int_0^1 \dli{t} - \int_0^1 \dli{t} \cos\left(2\varphi_n t\right)\right] = 1
+    \end{align*}
+    % Deste modo,
+    % \begin{equation*}
+    %     u_n(x) = \sqrt{2} \exp\left(-\frac{1}{2}x\right)\cos\left(\frac{2n - 1}{2}\pi x\right)
+    % \end{equation*}
+    % são as autofunções para este problema de Sturm-Liouville, para \(n \in \mathbb{N}\smallsetminus\set{0}\).
+    %
+    % Pela fórmula de Mercer, a função de Green do problema associado é
+    % \begin{align*}
+    %     G(x,\xi) &= -\sum_{n = 1}^\infty \frac{u_n(x)u_n(\xi)}{\lambda_n}\\
+    %              &= - 8 \sum_{n = 1}^\infty \frac{\exp\left(-\frac{x + \xi}{2}\right)\cos\left(\frac{2n - 1}{2} \pi x\right)\cos\left(\frac{2n - 1}{2} \pi \xi\right)}{\left(2n - 1\right)^2\pi^2 + 1},
+    % \end{align*}
+    % como desejado.
+\end{proof}
