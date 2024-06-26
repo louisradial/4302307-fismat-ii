@@ -2,13 +2,13 @@
 \begin{proposition}{Autofunções do problema de Sturm-Liouville com \(u'' + u' + \lambda u = 0\)}{exercício4d}
     Os autovalores e as autofunções normalizadas do problema de Sturm-Liouville \(u'' + u' + \lambda u = 0\) com condições de contorno \(u(0) = 0\) e \(u'(1) = 0\) são
     \begin{equation*}
-        \lambda_n =\left(n - \frac12\right)^2 \pi^2 + \frac14
+        \lambda_n =\varphi_n^2+ \frac14
         \quad\text{e}\quad
-        u_n(x) =\sqrt{2} \exp\left(-\frac{1}{2}x\right)\cos\left(\frac{2n - 1}{2}\pi x\right)
+        u_n(x) = \sqrt{\frac{1 + 4\varphi_n^2}{2\varphi_n^2}}\exp\left(-\frac{1}{2}x\right)\sin\left(\varphi_n x\right)
     \end{equation*}
-    para \(n \in \mathbb{N}\smallsetminus{0}\). Assim,
+    para \(n \in \mathbb{N}\smallsetminus{0}\), onde \(\varphi_n\) é a \(n\)-ésima raiz positiva da equação transcendental \(2\varphi = \tan\varphi\). Assim,
     \begin{equation*}
-        G(x,\xi) = - 8 \sum_{n = 1}^\infty \frac{\exp\left(-\frac{x + \xi}{2}\right)\cos\left(\frac{2n - 1}{2} \pi x\right)\cos\left(\frac{2n - 1}{2} \pi \xi\right)}{\left(2n - 1\right)^2\pi^2 + 1},
+        G(x,\xi) =- 2\sum_{n = 1}^\infty \frac{\exp\left(-\frac{x + \xi}{2}\right)\sin\left(\varphi_n x\right)\sin\left(\varphi_n \xi\right)}{\varphi_n^2},
     \end{equation*}
     para \((x,\xi) \in [0,1]\times[0,1]\), é a função de Green do problema de Sturm associado.
 \end{proposition}
@@ -50,18 +50,27 @@
     para quaisquer funções integráveis \(f, g\) em \([0,1]\). Para determinar as autofunções, devemos impor que as soluções encontradas têm norma unitária em relação a este produto interno, isto é,
     \begin{align*}
         \inner{u_n}{u_n}_r = 1 &\implies \int_0^1 e^t \dli{t} \abs{\beta_n}^2 e^{-t}\cos^2\left(\varphi_n t\right) = 1\\
-                               &\implies  \frac12\abs{\beta_n}^2 \left[\int_0^1 \dli{t} - \int_0^1 \dli{t} \cos\left(2\varphi_n t\right)\right] = 1
+                               &\implies  \frac12\abs{\beta_n}^2 \left[\int_0^1 \dli{t} - \int_0^1 \dli{t} \cos\left(2\varphi_n t\right)\right] = 1\\
+                               &\implies \frac12 \left[1 - \frac{\sin(2\varphi_n)}{2\varphi_n}\right]\abs{\beta_n}^2 = 1.
     \end{align*}
-    % Deste modo,
-    % \begin{equation*}
-    %     u_n(x) = \sqrt{2} \exp\left(-\frac{1}{2}x\right)\cos\left(\frac{2n - 1}{2}\pi x\right)
-    % \end{equation*}
-    % são as autofunções para este problema de Sturm-Liouville, para \(n \in \mathbb{N}\smallsetminus\set{0}\).
-    %
-    % Pela fórmula de Mercer, a função de Green do problema associado é
-    % \begin{align*}
-    %     G(x,\xi) &= -\sum_{n = 1}^\infty \frac{u_n(x)u_n(\xi)}{\lambda_n}\\
-    %              &= - 8 \sum_{n = 1}^\infty \frac{\exp\left(-\frac{x + \xi}{2}\right)\cos\left(\frac{2n - 1}{2} \pi x\right)\cos\left(\frac{2n - 1}{2} \pi \xi\right)}{\left(2n - 1\right)^2\pi^2 + 1},
-    % \end{align*}
-    % como desejado.
+    Da definição de \(\varphi_n\), temos que \(\tan\varphi_n > 0\), isto é, os sinais de \(\sin\varphi_n\) e de \(\cos\varphi_n\) são iguais, logo \(\sin(2\varphi_n) > 0\). Ainda, temos
+    \begin{equation*}
+        \sec^2\varphi_n = 1 + 4\varphi_n^2 \implies \cos^2\varphi_n = \frac{1}{1+4\varphi_n^2} \implies \sin^2\varphi_n = \frac{4\varphi_n^2}{1+4\varphi_n^2} \implies \sin(2\varphi_n) = \frac{2\varphi_n}{1+4\varphi_n^2},
+    \end{equation*}
+    portanto a constante de normalização é
+    \begin{equation*}
+        \frac12\left[1 - \frac{1}{1+4\varphi_n^2}\right]\abs{\beta_n}^2 = 1 \implies \beta_n = \sqrt{\frac{1+4\varphi_n^2}{2\varphi_n^2}}.
+    \end{equation*}
+    Deste modo,
+    \begin{equation*}
+        u_n(x) = \sqrt{\frac{1 + 4\varphi_n^2}{2\varphi_n^2}}\exp\left(-\frac{1}{2}x\right)\sin\left(\varphi_n x\right)
+    \end{equation*}
+    são as autofunções para este problema de Sturm-Liouville, para \(n \in \mathbb{N}\smallsetminus\set{0}\).
+
+    Pela fórmula de Mercer, a função de Green do problema associado é
+    \begin{align*}
+        G(x,\xi) &= -\sum_{n = 1}^\infty \frac{u_n(x)u_n(\xi)}{\lambda_n}\\
+                 &= - 2\sum_{n = 1}^\infty \frac{\exp\left(-\frac{x + \xi}{2}\right)\sin\left(\varphi_n x\right)\sin\left(\varphi_n \xi\right)}{\varphi_n^2},
+    \end{align*}
+    como desejado.
 \end{proof}
